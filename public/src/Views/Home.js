@@ -4,7 +4,7 @@ import Main from "../Components/Main";
 
 const Home = () => {
  return (
-    <div class="flex">
+    <div class="flex flex-col">
         <Header />
         <Main />
     </div>

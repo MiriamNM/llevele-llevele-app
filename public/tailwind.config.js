@@ -11,7 +11,7 @@ module.exports = {
       water: "#49BEB7",
       mint: 'rgba(64, 203, 179, 0.20)',
       mintTwo: "#AFFFDF",
-      white: "#F5F5F5",
+      ligth: "#F5F5F5",
       red: "#FC345C",
     },
     screens: {
