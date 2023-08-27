@@ -40,7 +40,12 @@ const Home = () => {
               </>
             }
           />
-          <Route path="/admin" element={<HeaderAdmin />} />
+          <Route path="/admin" element={
+              <>
+                <HeaderAdmin />
+                <MainConsumer />
+              </>
+            } />
         </Routes>
       </HashRouter>
     </div>
