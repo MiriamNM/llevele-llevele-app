@@ -1,5 +1,5 @@
 import React from 'react';
-import phoneImg from '../Assets/phoneImg.png';
+import phoneImg from '../../Assets/phoneImg.png';
 
 const Main = () => {
   return (
