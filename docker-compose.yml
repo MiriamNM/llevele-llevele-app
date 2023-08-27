@@ -9,9 +9,9 @@ services:
     environment:
       - POSTGRES_DB=llevele_llevele
       - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=root
+      - POSTGRES_PASSWORD=root123
     volumes:
-      - ./postgres_data:/var/lib/postgresql/data
+      - /var/lib/postgresql/data
 
   pgadmin:
     image: dpage/pgadmin4

@@ -13,26 +13,26 @@ const service = new VendorService();
 
 router.get('/', async (req, res, next) => {
   try {
-    const users = await service.find();
-    res.json(users);
+    const vendors = await service.find();
+    res.json(vendors);
   } catch (error) {
     next(error);
   }
 });
 
-router.get(
-  '/:id',
-  validatorHandler(getUserSchema, 'params'),
-  async (req, res, next) => {
-    try {
-      const { id } = req.params;
-      const category = await service.findOne(id);
-      res.json(category);
-    } catch (error) {
-      next(error);
-    }
-  }
-);
+// router.get(
+//   '/:id',
+//   validatorHandler(getUserSchema, 'params'),
+//   async (req, res, next) => {
+//     try {
+//       const { id } = req.params;
+//       const category = await service.findOne(id);
+//       res.json(category);
+//     } catch (error) {
+//       next(error);
+//     }
+//   }
+// );
 
 router.post(
   '/',

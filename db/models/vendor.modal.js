@@ -32,9 +32,9 @@ const VendorSchema = {
 };
 
 class Vendor extends Model {
-  // static associate() {
-  //   //
-  // }
+  static associate() {
+    // associate
+  }
 
   static config(sequelize) {
     return {
