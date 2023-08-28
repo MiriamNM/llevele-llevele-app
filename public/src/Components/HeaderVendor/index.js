@@ -22,19 +22,19 @@ const HeaderVendor = () => {
 
   return (
     <header className="container mx-auto p-8 bg-mint">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between md:flex-wrap">
         <div className="flex items-center">
           <img src={logo} alt="logo" className="mr-4" />
         </div>
-        <div className="flex space-x-4 items-center">
-          <input type="search" className="rounded border-mintTwo w-80 h-9" />
-          <button className="bg-ligth text-dark border-mintTwo px-4 py-2 rounded hover:text-red">
+        <div className="flex space-x-4 items-center md:mt-3 sm:mt-3">
+          <input type="search" className="rounded border-mintTwo w-80 h-9 md:w-60 sm:w-60" />
+          <button className="bg-ligth text-dark border-mintTwo px-4 py-2 md:px-2 sm:px-2 rounded hover:text-red">
             Buscar
           </button>
         </div>
       </div>
-      <nav className="flex flex-row pt-3 items-center">
-        <div className="flex space-x-4">
+      <nav className="flex flex-row pt-3 items-center md:flex-wrap sm:flex-wrap">
+        <div className="flex space-x-4 md:py-2 sm:py-2">
           <button
             className="font-poppins text-lg md:text-base sm:text-base px-2 border-none hover:text-red hover:bg-transparent"
             onClick={() => showModal('NewProduct')}
