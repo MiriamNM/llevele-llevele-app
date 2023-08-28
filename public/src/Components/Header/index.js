@@ -21,12 +21,12 @@ const Header = () => {
   };
 
   return (
-    <header className="container mx-auto flex items-center justify-between p-8 bg-mint">
+    <header className="container mx-auto flex items-center justify-between p-8 bg-mint md:flex-col sm:flex-col">
       <div className="flex justify-start">
         <img src={logo} alt="logo" />
       </div>
       <nav>
-        <ul className="flex space-x-4">
+        <ul className="flex space-x-4  md:pt-4 sm:pt-4">
           <li>
             <button
               className="font-poppins text-lg pr-4 md:text-base sm:text-base px-2 border-none hover:text-red hover:bg-transparent"
