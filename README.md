@@ -2,7 +2,7 @@
 
 ## Welcome!
 
-![llevele-llevele](https://raw.githubusercontent.com/MiriamNM/llevele-llevele-app/dev/public/src/Assets/llevele.png)
+![llevele-llevele](https://raw.githubusercontent.com/MiriamNM/llevele-llevele-app/main/public/src/Assets/llevele.png)
 
 ## Documentación Técnica:
 La aplicación esta compuesta por la arquitectura del backend desde las primeras carpetas y en la carpeta public se encuentra el frontend. 
@@ -34,15 +34,15 @@ En la aplicación puedes hacer uso de ella como Vendedor, Consumidor o Administr
 ### Si eres vendedor:
 Al loguearte correctamente puedes crear nuevos productos, ver todos los productos y filtrarlos por nombre del producto o sku.
 Solo se ven los productos que tu has registrado.
-![AppVendor](https://raw.githubusercontent.com/MiriamNM/llevele-llevele-app/dev/public/src/Assets/AppVendor.png)
+![AppVendor](https://raw.githubusercontent.com/MiriamNM/llevele-llevele-app/main/public/src/Assets/AppVendor.png)
 
 ### Si eres Comprador:
 Puedes buscar los productos por nombre o sku. Ademas de que puedes filtrar por precio.
-![AppCustomer](https://raw.githubusercontent.com/MiriamNM/llevele-llevele-app/dev/public/src/Assets/AppCustomer.png)
+![AppCustomer](https://raw.githubusercontent.com/MiriamNM/llevele-llevele-app/main/public/src/Assets/AppCustomer.png)
 
 ### Si eres Administrador:
 Puedes ver todos los productos y tambien buscar por vendedor. 
-![AppAdmin](https://raw.githubusercontent.com/MiriamNM/llevele-llevele-app/dev/public/src/Assets/AppAdmin.png)
+![AppAdmin](https://raw.githubusercontent.com/MiriamNM/llevele-llevele-app/main/public/src/Assets/AppAdmin.png)
 
 ** NOTA:
 Falto la conexión del Frontend con el Backend. Por los mismo no se pudo hacer la funcionalidad ya teniendo la data de la base de datos ni logueat. 
