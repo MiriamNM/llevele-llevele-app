@@ -1,16 +1,20 @@
 import React from 'react';
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 import logo from '../../Assets/llevele-llevele.png';
 
 const HeaderCustomer = () => {
   return (
     <header className="container mx-auto p-8 bg-mint">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between md:flex-wrap">
         <div className="flex items-center">
           <img src={logo} alt="logo" className="mr-4" />
         </div>
-        <div className="flex space-x-4 items-center">
-          <input type="search" className="rounded border-mintTwo w-80 h-9" />
+        <div className="flex space-x-4 items-center md:mt-3 sm:mt-3">
+          <input
+            type="search"
+            className="rounded border-mintTwo w-80 h-9  md:w-60 sm:w-60"
+            placeholder="producto o sku"
+          />
           <button className="bg-ligth text-dark border-mintTwo px-4 py-2 rounded hover:text-red">
             Buscar
           </button>

@@ -11,16 +11,16 @@ const MainConsumer = () => {
         <input
           type="number"
           style={{ borderColor: '#49BEB7' }}
-          className="border rounded w-20"
+          className="border rounded w-20 md:w-12 sm:w-12"
         />
-        <p> - </p>
+        <p className='px-1'>-</p>
         <input
           type="number"
           style={{ borderColor: '#49BEB7' }}
-          className="border rounded w-20"
+          className="border rounded w-20 md:w-12  sm:w-12"
         />
       </div>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center md:pt-8 sm:pt-8">
         <Card
           hoverable
           style={{ width: 240 }}
