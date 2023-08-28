@@ -1,6 +1,7 @@
 {
   "name": "my-store",
   "version": "1.0.0",
+  "homepage": "https://miriamnm.github.io/llevele-llevele-app",
   "description": "",
   "main": "index.js",
   "scripts": {
