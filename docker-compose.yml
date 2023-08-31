@@ -7,9 +7,9 @@ services:
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_DB=llevele_llevele
+      - POSTGRES_DB=root
       - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=root123
+      - POSTGRES_PASSWORD=root
     volumes:
       - /var/lib/postgresql/data
 

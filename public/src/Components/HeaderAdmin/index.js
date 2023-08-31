@@ -21,16 +21,8 @@ const HeaderAdmin = () => {
 
   return (
     <header className="container mx-auto p-8 bg-mint">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center">
-          <img src={logo} alt="logo" className="mr-4" />
-        </div>
-        <div className="flex space-x-4 items-center">
-          <input type="search" className="rounded border-mintTwo w-80 h-9" />
-          <button className="bg-ligth text-dark border-mintTwo px-4 py-2 rounded hover:text-red">
-            Buscar
-          </button>
-        </div>
+      <div className="flex items-center justify-between md:flex-wrap">
+        <img src={logo} alt="logo" className="mr-4" />
       </div>
       <nav className="flex flex-row pt-3 items-center">
         <div className="flex space-x-4">

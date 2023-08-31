@@ -15,8 +15,8 @@ const options = {
     } else {
       callback(new Error('no permitido'));
     }
-  }
-}
+  },
+};
 app.use(cors(options));
 
 app.get('/', (req, res) => {
@@ -29,7 +29,6 @@ app.get('/nueva-ruta', (req, res) => {
 
 routerApi(app);
 
-
 app.listen(port, () => {
-  console.log('Mi port' +  port);
+  console.log('Mi port' + port);
 });

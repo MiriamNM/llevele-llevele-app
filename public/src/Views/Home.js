@@ -32,7 +32,7 @@ const Home = () => {
             }
           />
           <Route
-            path="/costumer"
+            path="/customer"
             element={
               <>
                 <HeaderCustomer />

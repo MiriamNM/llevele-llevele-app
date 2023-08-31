@@ -6,7 +6,7 @@ const MainVendor = () => {
   return (
     <main className="flex flex-col p-10">
       <h2 className="text-red font-medium text-5xl">Productos</h2>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center md:pt-4 sm-pt-4">
         <Card
           hoverable
           style={{ width: 240 }}
