@@ -1,10 +1,15 @@
 FROM node:14
 
-WORKDIR /usr/src/app
-COPY package*.json ./
+EXPOSE 3001
+
+WORKDIR /src
+
+RUN npm install i npm
+
+COPY package.json package-lock*.json ./
+
+RUN npm install
 
 COPY . .
 
-EXPOSE 3000
-
-CMD [ "node", "index.js" ]
+CMD ["node", "app/index.js"]
