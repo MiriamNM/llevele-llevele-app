@@ -28,7 +28,7 @@ exports.createOne = async (req, res, next) => {
 
     try {
       const product = await User.create(PRODUCT_MODEL);
-      console.log("user created");
+      console.log("product created");
       return res.status(201).json(product);
     } catch (error) {
       return res.status(500).json(error);
