@@ -8,6 +8,7 @@ const RegisterModal = ({ handleCancel, visible, onOk }) => {
     email: "",
     password: "",
   });
+  const [error, setError] = useState("");
 
   const onClickCreateUser = async () => {
     try {
@@ -15,7 +16,7 @@ const RegisterModal = ({ handleCancel, visible, onOk }) => {
       console.log("Solicitud POST exitosa:", result);
       handleCancel();
     } catch (error) {
-      console.log(error);
+      setError("El usuario ya existe, intenta de nuevo.");
     }
   };
 
@@ -88,6 +89,7 @@ const RegisterModal = ({ handleCancel, visible, onOk }) => {
             value={formData.password}
             onChange={handleChange}
           />
+          {error && <p className="text-red text-sm font-light pt-3">{error}</p>}
         </form>
       </div>
     </Modal>
