@@ -13,6 +13,7 @@ const RegisterModal = ({ handleCancel, visible, onOk }) => {
     try {
       const result = await CreateNewUser(formData);
       console.log("Solicitud POST exitosa:", result);
+      handleCancel();
     } catch (error) {
       console.log(error);
     }
@@ -87,20 +88,6 @@ const RegisterModal = ({ handleCancel, visible, onOk }) => {
             value={formData.password}
             onChange={handleChange}
           />
-          {/* <label
-            htmlFor="confirmPassword"
-            className="block text-dark text-lg font-base"
-          >
-            Verifica contraseña:
-          </label>
-          <input
-            type="password"
-            placeholder="*******"
-            className="border rounded w-full py-2 px-3"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-          /> */}
         </form>
       </div>
     </Modal>
