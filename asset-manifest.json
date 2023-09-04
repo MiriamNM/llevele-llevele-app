@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/llevele-llevele-app/static/css/main.044f5c3a.css",
-    "main.js": "/llevele-llevele-app/static/js/main.2068b2c2.js",
+    "main.css": "/llevele-llevele-app/static/css/main.2bff34fa.css",
+    "main.js": "/llevele-llevele-app/static/js/main.794a23f2.js",
     "static/js/787.468f20b0.chunk.js": "/llevele-llevele-app/static/js/787.468f20b0.chunk.js",
     "static/media/phoneImg.png": "/llevele-llevele-app/static/media/phoneImg.73239560f29b75d6136b.png",
     "index.html": "/llevele-llevele-app/index.html",
-    "main.044f5c3a.css.map": "/llevele-llevele-app/static/css/main.044f5c3a.css.map",
-    "main.2068b2c2.js.map": "/llevele-llevele-app/static/js/main.2068b2c2.js.map",
+    "main.2bff34fa.css.map": "/llevele-llevele-app/static/css/main.2bff34fa.css.map",
+    "main.794a23f2.js.map": "/llevele-llevele-app/static/js/main.794a23f2.js.map",
     "787.468f20b0.chunk.js.map": "/llevele-llevele-app/static/js/787.468f20b0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.044f5c3a.css",
-    "static/js/main.2068b2c2.js"
+    "static/css/main.2bff34fa.css",
+    "static/js/main.794a23f2.js"
   ]
 }
