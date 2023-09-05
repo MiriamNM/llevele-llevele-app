@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from '../../Assets/llevele-llevele.png';
 import RegisterModal from '../Modals/RegisterModal';
 import LoginModal from '../Modals/LoginModal';
+import { GetAllUsers } from "../../Services/Users";
+
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modal, setModal] = useState(null);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    GetAllUsers()
+      .then((result) => {
+        setData(result);
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }, []);
 
   const showModal = (component) => {
     setModal(component);
@@ -56,6 +69,7 @@ const Header = () => {
             handleCancel={handleCancel}
             visible={isModalOpen}
             onOk={handleOk}
+            userData={data}
           />
         )}
       </nav>

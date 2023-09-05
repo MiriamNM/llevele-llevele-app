@@ -10,7 +10,7 @@ export const CreateNewUser = async (data) => {
   }
 };
 
-export const GetAllUser = async () => {
+export const GetAllUsers = async () => {
   try {
     const response = await axios.get('http://localhost:3001/users');
     return response.data;
