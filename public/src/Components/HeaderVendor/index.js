@@ -1,11 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from '../../Assets/llevele-llevele.png';
+import { GetAllProducts } from '../../Services/Products';
 import NewProductModal from '../Modals/NewProductModal';
 
 const HeaderVendor = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modal, setModal] = useState(null);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    GetAllProducts()
+      .then((result) => {
+        setData(result);
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }, []);
 
   const showModal = (component) => {
     setModal(component);
@@ -63,6 +75,7 @@ const HeaderVendor = () => {
           handleCancel={handleCancel}
           visible={isModalOpen}
           onOk={handleOk}
+          productData={data}
         />
       )}
     </header>

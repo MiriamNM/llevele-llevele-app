@@ -3,10 +3,10 @@ const db = require("../util/database");
 
 const Product = db.define("product", {
   id: {
-    allowNull: false,
-    autoIncrement: true,
-    primaryKey: true,
     type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false,
   },
   name: {
     type: Sequelize.STRING,
@@ -15,9 +15,10 @@ const Product = db.define("product", {
   image: {
     type: Sequelize.STRING,
     allowNull: false,
+    defaultValue: 'img',
   },
   description: {
-    type: Sequelize.TEXT,
+    type: Sequelize.STRING,
     allowNull: false,
   },
   price: {
@@ -29,9 +30,8 @@ const Product = db.define("product", {
     allowNull: false,
   },
   sku: {
-    allowNull: false,
-    primaryKey: true,
     type: Sequelize.INTEGER,
+    allowNull: false,
   },
 });
 
