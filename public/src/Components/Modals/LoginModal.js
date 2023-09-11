@@ -1,34 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Modal } from "antd";
-import { GetAllUser } from "../../Services/Users";
 
-const LoginModal = ({ handleCancel, visible, onOk }) => {
-  const [data, setData] = useState([]);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const LoginModal = ({ handleCancel, visible, onOk, userData, email, setEmail, password, setPassword }) => {
   const [error, setError] = useState("");
   const [destination, setDestination] = useState("");
 
-  useEffect(() => {
-    GetAllUser()
-      .then((result) => {
-        setData(result);
-      })
-      .catch((error) => {
-        throw error;
-      });
+  const emailExists = userData.some((user) => user.email === email);
 
-    const emailExists = data.some((user) => user.email === email);
+  useEffect(() => {
     setDestination(emailExists ? "/vendor" : "/");
-  }, [data, email]);
+  }, [emailExists]);
 
   const onCheckData = () => {
-    const searchUser = data.find((user) => user.email === email);
-    if (searchUser) {
+    if (emailExists) {
       onOk();
     } else {
-      setError("Aun no estas registrad@");
+      setError("Aún no estás registrado");
     }
   };
 
@@ -51,7 +39,7 @@ const LoginModal = ({ handleCancel, visible, onOk }) => {
           to={destination}
           key="submit"
           className="font-poppins text-dark border-water border-5 font-normal text-base rounded px-4 py-2 mr-2 hover:bg-light hover:text-red hover:border-red"
-          onClick={onCheckData}
+          onClick={() => onCheckData()}
         >
           Iniciar sesión
         </NavLink>,

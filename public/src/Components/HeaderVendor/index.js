@@ -1,11 +1,34 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import logo from '../../Assets/llevele-llevele.png';
-import NewProductModal from '../Modals/NewProductModal';
+import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import logo from "../../Assets/llevele-llevele.png";
+import { GetAllProducts } from "../../Services/Products";
+import { GetAllUsers } from "../../Services/Users";
+import NewProductModal from "../Modals/NewProductModal";
 
-const HeaderVendor = () => {
+const HeaderVendor = ({ email }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modal, setModal] = useState(null);
+  const [data, setData] = useState([]);
+  const [dataUser, setDataUser] = useState([]);
+
+  useEffect(() => {
+    GetAllProducts()
+      .then((result) => {
+        setData(result);
+      })
+      .catch((error) => {
+        throw error;
+      });
+
+    GetAllUsers()
+      .then((result) => {
+        const infoUser = result.filter((user) => user.email === email);
+        setDataUser(infoUser);
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }, []);
 
   const showModal = (component) => {
     setModal(component);
@@ -41,12 +64,9 @@ const HeaderVendor = () => {
         <div className="flex space-x-4 md:py-2 sm:py-2">
           <button
             className="font-poppins text-lg md:text-base sm:text-base px-2 border-none hover:text-red hover:bg-transparent"
-            onClick={() => showModal('NewProduct')}
+            onClick={() => showModal("NewProduct")}
           >
             Nuevo Producto
-          </button>
-          <button className="font-poppins text-lg md:text-base sm:text-base px-2 border-none hover:text-red hover:bg-transparent">
-            Productos
           </button>
         </div>
         <div className="ml-auto">
@@ -58,11 +78,13 @@ const HeaderVendor = () => {
           </NavLink>
         </div>
       </nav>
-      {modal === 'NewProduct' && isModalOpen && (
+      {modal === "NewProduct" && isModalOpen && (
         <NewProductModal
           handleCancel={handleCancel}
           visible={isModalOpen}
           onOk={handleOk}
+          productData={data}
+          userData={dataUser}
         />
       )}
     </header>

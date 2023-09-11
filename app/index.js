@@ -26,7 +26,7 @@ app.use("/products", require("./routes/products"));
 
 (async () => {
   try {
-    await sequelize.sync({ force: false });
+    await sequelize.sync({ force: false }); 
 
     console.log("test");
     app.listen(process.env.EXTERNAL_PORT || 3000);

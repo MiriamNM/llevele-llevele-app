@@ -1,69 +1,82 @@
-const Products = require("../models/produts");
+const Product = require("../models/products");
+
+const handleResponse = (res, result) => {
+  if (result instanceof Error) {
+    return res.status(500).json({ error: result.message });
+  }
+  return res.status(200).json(result);
+};
 
 exports.getAll = async (req, res, next) => {
   try {
-    const ALL = await Products.findAll();
-    return res.status(200).json(ALL);
+    const ALL = await Product.findAll();
+    handleResponse(res, ALL);
   } catch (error) {
-    return res.status(500).json(error);
+    handleResponse(res, error);
   }
 };
 
 exports.getOne = async (req, res, next) => {
   try {
-    const product = await Products.findByPk(req.params.id);
-    return res.status(200).json(product);
+    const products = await Product.findByPk(req.params.id);
+    handleResponse(res, products);
   } catch (error) {
-    return res.status(500).json(error);
+    handleResponse(res, error);
   }
 };
 
 exports.createOne = async (req, res, next) => {
   try {
     const PRODUCT_MODEL = {
-      role: req.body.role,
-      email: req.body.email,
-      password: req.body.password,
+      name: req.body?.name,
+      image: req.body?.image,
+      description: req.body?.description,
+      price: req.body?.price,
+      quality: req.body?.quality,
+      sku: req.body?.sku,
+      userId: req.body?.userId, 
     };
 
-    try {
-      const product = await User.create(PRODUCT_MODEL);
-      console.log("product created");
-      return res.status(201).json(product);
-    } catch (error) {
-      return res.status(500).json(error);
-    }
+    const product = await Product.create(PRODUCT_MODEL);
+    handleResponse(res, product);
   } catch (error) {
-    return res.status(500).json(error);
+    handleResponse(res, error);
   }
 };
 
 exports.updateOne = async (req, res, next) => {
   try {
     const PRODUCT_MODEL = {
-      role: req.body.role,
-      email: req.body.email,
-      password: req.body.password,
+      name: req.body?.name,
+      image: req.body?.image,
+      description: req.body?.description,
+      price: req.body?.price,
+      quality: req.body?.quality,
+      sku: req.body?.sku,
+      userId: req.body?.userId,
     };
 
-    try {
-      const product = await User.update(PRODUCT_MODEL, {
-        where: { id: req.params.id },
-      });
-      return res.status(200).json(product);
-    } catch (err) {
-      return res.status(500).json(err);
+    const [updatedRows] = await Product.update(PRODUCT_MODEL, {
+      where: { id: req.params.id },
+    });
+    if (updatedRows === 0) {
+      return handleResponse(res, new Error("Producto no encontrado"));
     }
+
+    handleResponse(res, { message: "Producto actualizado exitosamente" });
   } catch (error) {
-    return res.status(500).json(error);
+    handleResponse(res, error);
   }
 };
 
 exports.deleteOne = async (req, res, next) => {
   try {
-    const product = await User.destroy({ where: { id: req.params.id } });
-    return res.status(200).json(product);
+    const deletedRows = await Product.destroy({ where: { id: req.params.id } });
+    if (deletedRows === 0) {
+      return handleResponse(res, new Error("Producto no encontrado"));
+    }
+    handleResponse(res, { message: "Producto eliminado exitosamente" });
   } catch (error) {
-    return res.status(500).json(error);
+    handleResponse(res, error);
   }
 };
