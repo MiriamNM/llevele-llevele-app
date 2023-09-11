@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Modal } from "antd";
 
-const LoginModal = ({ handleCancel, visible, onOk, userData }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const LoginModal = ({ handleCancel, visible, onOk, userData, email, setEmail, password, setPassword }) => {
   const [error, setError] = useState("");
   const [destination, setDestination] = useState("");
 
@@ -41,7 +39,7 @@ const LoginModal = ({ handleCancel, visible, onOk, userData }) => {
           to={destination}
           key="submit"
           className="font-poppins text-dark border-water border-5 font-normal text-base rounded px-4 py-2 mr-2 hover:bg-light hover:text-red hover:border-red"
-          onClick={onCheckData}
+          onClick={() => onCheckData()}
         >
           Iniciar sesión
         </NavLink>,

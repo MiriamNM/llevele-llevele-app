@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import logo from '../../Assets/llevele-llevele.png';
-import RegisterModal from '../Modals/RegisterModal';
-import LoginModal from '../Modals/LoginModal';
+import React, { useState, useEffect } from "react";
+import logo from "../../Assets/llevele-llevele.png";
+import RegisterModal from "../Modals/RegisterModal";
+import LoginModal from "../Modals/LoginModal";
 import { GetAllUsers } from "../../Services/Users";
 
-
-const Header = () => {
+const Header = ({ email, setEmail, data, setData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modal, setModal] = useState(null);
-  const [data, setData] = useState([]);
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     GetAllUsers()
@@ -43,7 +42,7 @@ const Header = () => {
           <li>
             <button
               className="font-poppins text-lg pr-4 md:text-base sm:text-base px-2 border-none hover:text-red hover:bg-transparent"
-              onClick={() => showModal('Register')}
+              onClick={() => showModal("Register")}
             >
               Registrate
             </button>
@@ -51,25 +50,29 @@ const Header = () => {
           <li>
             <button
               className="font-poppins text-lg pr-4 md:text-base sm:text-base px-2 border-none hover:text-red hover:bg-transparent"
-              onClick={() => showModal('Login')}
+              onClick={() => showModal("Login")}
             >
               Inicia sesión
             </button>
           </li>
         </ul>
-        {modal === 'Register' && isModalOpen && (
+        {modal === "Register" && isModalOpen && (
           <RegisterModal
             handleCancel={handleCancel}
             visible={isModalOpen}
             onOk={handleOk}
           />
         )}
-        {modal === 'Login' && isModalOpen && (
+        {modal === "Login" && isModalOpen && (
           <LoginModal
             handleCancel={handleCancel}
             visible={isModalOpen}
             onOk={handleOk}
             userData={data}
+            email={email}
+            setEmail={setEmail}
+            password={password}
+            setPassword={setPassword}
           />
         )}
       </nav>

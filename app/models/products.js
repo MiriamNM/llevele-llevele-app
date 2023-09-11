@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const db = require("../util/database");
+const User = require("./users");
 
 const Product = db.define("product", {
   id: {
@@ -33,6 +34,17 @@ const Product = db.define("product", {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
+  userId: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    references: {
+      model: User,
+      key: 'id',
+    },
+    onUpdate: 'CASCADE',
+  },
 });
+
+Product.belongsTo(User);
 
 module.exports = Product;

@@ -1,4 +1,4 @@
-const User = require("..//models/users");
+const User = require("../models/users");
 
 const handleResponse = (res, result) => {
   if (result instanceof Error) {

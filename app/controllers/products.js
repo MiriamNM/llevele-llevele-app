@@ -28,12 +28,13 @@ exports.getOne = async (req, res, next) => {
 exports.createOne = async (req, res, next) => {
   try {
     const PRODUCT_MODEL = {
-      name: req.body.name,
-      image: req.body.image,
-      description: req.body.description,
-      price: req.body.price,
-      quality: req.body.quality,
-      sku: req.body.sku,
+      name: req.body?.name,
+      image: req.body?.image,
+      description: req.body?.description,
+      price: req.body?.price,
+      quality: req.body?.quality,
+      sku: req.body?.sku,
+      userId: req.body?.userId, 
     };
 
     const product = await Product.create(PRODUCT_MODEL);
@@ -46,12 +47,13 @@ exports.createOne = async (req, res, next) => {
 exports.updateOne = async (req, res, next) => {
   try {
     const PRODUCT_MODEL = {
-      name: req.body.name,
-      image: req.body.image,
-      description: req.body.description,
-      price: req.body.price,
-      quality: req.body.quality,
-      sku: req.body.sku,
+      name: req.body?.name,
+      image: req.body?.image,
+      description: req.body?.description,
+      price: req.body?.price,
+      quality: req.body?.quality,
+      sku: req.body?.sku,
+      userId: req.body?.userId,
     };
 
     const [updatedRows] = await Product.update(PRODUCT_MODEL, {

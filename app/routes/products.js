@@ -1,7 +1,6 @@
 const controller = require('../controllers/products');
 const router = require('express').Router();
 
-//CRUD
 router
     .get('/', controller.getAll)
     .get('/:id', controller.getOne)
