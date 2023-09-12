@@ -85,6 +85,7 @@ const HeaderVendor = ({ email }) => {
           onOk={handleOk}
           productData={data}
           userData={dataUser}
+          email={email}
         />
       )}
     </header>

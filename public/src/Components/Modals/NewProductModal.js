@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Modal } from "antd";
 import { CreateNewProduct } from "../../Services/Products";
 
-const NewProductModal = ({ handleCancel, visible, onOk, userData }) => {
-  const idUser = userData[0].userId;
+const NewProductModal = ({ handleCancel, visible, onOk, userData, email }) => {
+  const { id: idUser } = userData.find(user => user.email === email);
   const [formData, setFormData] = useState({
     name: "",
     image: "" || "img",
@@ -17,8 +17,7 @@ const NewProductModal = ({ handleCancel, visible, onOk, userData }) => {
 
   const onClickCreateProduct = async () => {
     try {
-      const result = await CreateNewProduct(formData);
-      return result;
+      await CreateNewProduct(formData);
       onOk();
     } catch (error) {
       setError("El producto ya existe, intenta de nuevo.");
