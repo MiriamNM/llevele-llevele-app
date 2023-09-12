@@ -16,7 +16,7 @@ const LoginModal = ({
   const [destination, setDestination] = useState("");
 
   const emailExists = userData.some((user) => user.email === email);
-  const { role } = userData.find((user) => user.email === email);
+  const { role } = userData.find((user) => user.email === email) || 'vendor';
 
   useEffect(() => {
     setDestination(emailExists ? `/${role}` : "/");
@@ -56,8 +56,6 @@ const LoginModal = ({
       ]}
     >
       <div>
-        {console.log(userData)}
-        {console.log(role)}
         <h2 className="text-dark text-xl font-base">
           Ingresa datos para iniciar sesión
         </h2>
