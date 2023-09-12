@@ -6,7 +6,7 @@ const NewProductModal = ({ handleCancel, visible, onOk, userData }) => {
   const idUser = userData[0].userId;
   const [formData, setFormData] = useState({
     name: "",
-    image: "img",
+    image: "" || "img",
     description: "",
     price: 0,
     quality: 0,
@@ -18,7 +18,7 @@ const NewProductModal = ({ handleCancel, visible, onOk, userData }) => {
   const onClickCreateProduct = async () => {
     try {
       const result = await CreateNewProduct(formData);
-      console.log("Solicitud POST exitosa:", result);
+      return result;
       onOk();
     } catch (error) {
       setError("El producto ya existe, intenta de nuevo.");

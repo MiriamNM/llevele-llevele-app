@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card } from "antd";
-import {
-  GetAllProducts,
-} from "../../Services/Products";
+import { GetAllProducts } from "../../Services/Products";
 
 const MainVendor = ({ email, userData }) => {
   const [dataProduct, setDataProduct] = useState([]);
@@ -10,23 +8,24 @@ const MainVendor = ({ email, userData }) => {
   const { Meta } = Card;
 
   const { id: idUser } = userData.find((user) => user.email === email) || {};
-  const productUser = dataProduct.filter((user) => user.userId === idUser) || {};
-  const { id: idUserInProduct } = productUser.find((user) => idUser === user.userId) || {};
+  const productUser =
+    dataProduct.filter((user) => user.userId === idUser) || {};
+  const { id: idUserInProduct } =
+    productUser.find((user) => idUser === user.userId) || {};
 
-  
-useEffect(() => {
-  GetAllProducts()
-    .then((result) => {
-      setDataProduct(result);
-    })
-    .catch((error) => {
-      throw error;
-    });
-}, []);
+  useEffect(() => {
+    GetAllProducts()
+      .then((result) => {
+        setDataProduct(result);
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }, []);
 
   return (
     <main className="flex flex-col p-10">
-    {idUser !== idUserInProduct ? (
+      {idUser !== idUserInProduct ? (
         <h2>No hay producto</h2>
       ) : (
         <>

@@ -2,15 +2,25 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Modal } from "antd";
 
-const LoginModal = ({ handleCancel, visible, onOk, userData, email, setEmail, password, setPassword }) => {
+const LoginModal = ({
+  handleCancel,
+  visible,
+  onOk,
+  userData,
+  email,
+  setEmail,
+  password,
+  setPassword,
+}) => {
   const [error, setError] = useState("");
   const [destination, setDestination] = useState("");
 
   const emailExists = userData.some((user) => user.email === email);
+  const { role } = userData.find((user) => user.email === email);
 
   useEffect(() => {
-    setDestination(emailExists ? "/vendor" : "/");
-  }, [emailExists]);
+    setDestination(emailExists ? `/${role}` : "/");
+  }, [emailExists, role]);
 
   const onCheckData = () => {
     if (emailExists) {
@@ -46,6 +56,8 @@ const LoginModal = ({ handleCancel, visible, onOk, userData, email, setEmail, pa
       ]}
     >
       <div>
+        {console.log(userData)}
+        {console.log(role)}
         <h2 className="text-dark text-xl font-base">
           Ingresa datos para iniciar sesión
         </h2>
