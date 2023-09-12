@@ -14,7 +14,6 @@ const Home = () => {
 
   return (
     <div className="flex flex-col">
-      {console.log(console.log(data))}
       <HashRouter>
         <Routes>
           <Route

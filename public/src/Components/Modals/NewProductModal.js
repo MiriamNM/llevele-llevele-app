@@ -17,8 +17,7 @@ const NewProductModal = ({ handleCancel, visible, onOk, userData, email }) => {
 
   const onClickCreateProduct = async () => {
     try {
-      const result = await CreateNewProduct(formData);
-      console.log("Solicitud POST exitosa:", result);
+      await CreateNewProduct(formData);
       onOk();
     } catch (error) {
       setError("El producto ya existe, intenta de nuevo.");

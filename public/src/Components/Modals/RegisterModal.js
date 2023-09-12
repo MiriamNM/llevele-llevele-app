@@ -12,8 +12,7 @@ const RegisterModal = ({ handleCancel, visible, onOk }) => {
 
   const onClickCreateUser = async () => {
     try {
-      const result = await CreateNewUser(formData);
-      console.log("Solicitud POST exitosa:", result);
+      await CreateNewUser(formData);
       onOk();
     } catch (error) {
       setError("El usuario ya existe, intenta de nuevo.");
