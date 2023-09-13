@@ -7,6 +7,7 @@ const MainConsumer = ({
   vendorSelect,
   userData,
   currentValue,
+  onDeleteProduct
 }) => {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
@@ -38,6 +39,7 @@ const MainConsumer = ({
       setMaxPrice={setMaxPrice}
       filterUserProducts={filterUserProducts}
       dataProduct={dataProduct}
+      onDeleteProduct={onDeleteProduct}
     />
   ) : (
     <ContainerCard

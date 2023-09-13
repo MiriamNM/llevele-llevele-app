@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { HashRouter, Routes, Route, NavLink } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Header from "../Components/Header";
 import HeaderAdmin from "../Components/HeaderAdmin";
 import HeaderCustomer from "../Components/HeaderCustomer";
@@ -7,7 +7,7 @@ import HeaderVendor from "../Components/HeaderVendor";
 import MainConsumer from "../Components/MainConsumer";
 import MainVendor from "../Components/MainVendor";
 import Main from "../Components/Main";
-import { GetAllProducts } from "../Services/Products";
+import { DeleteProduct, GetAllProducts } from "../Services/Products";
 import { GetAllUsers } from "../Services/Users";
 
 const Home = () => {
@@ -35,6 +35,14 @@ const Home = () => {
         throw error;
       });
   }, []);
+
+  const onDeleteProduct = async (id) => {
+    try {
+      await DeleteProduct(id);
+    } catch (error) {
+      console.log(error)
+    }
+  };
 
   return (
     <div className="flex flex-col">
@@ -72,6 +80,7 @@ const Home = () => {
                       userData={userData}
                       dataProduct={dataProduct}
                       currentValue={currentValue}
+                      onDeleteProduct={onDeleteProduct}
                     />
                   </>
                 }
@@ -106,6 +115,7 @@ const Home = () => {
                       userData={userData}
                       dataProduct={dataProduct}
                       vendorSelect={vendorSelect}
+                      onDeleteProduct={onDeleteProduct}
                     />
                   </>
                 }
