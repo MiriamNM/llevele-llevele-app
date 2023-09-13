@@ -19,3 +19,13 @@ export const GetAllProducts = async () => {
     throw error;
   }
 };
+
+export const DeleteProduct = async (id) => {
+  try {
+    const response = await axios.delete(`http://localhost:3001/products/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error al obtener los datos:', error);
+    throw error;
+  }
+};
