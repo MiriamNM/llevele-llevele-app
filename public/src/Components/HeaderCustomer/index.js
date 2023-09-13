@@ -1,35 +1,13 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import logo from "../../Assets/llevele-llevele.png";
+import LogoutButton from "../LogoutButton";
+import SearchInput from "../SearchInput";
 
-const HeaderCustomer = ({ setCurrentValue }) => {
+const HeaderCustomer = () => {
   return (
     <header className="container mx-auto p-8 bg-mint">
-      <div className="flex items-center justify-between md:flex-wrap">
-        <div className="flex items-center">
-          <img src={logo} alt="logo" className="mr-4" />
-        </div>
-        <div className="flex space-x-4 items-center md:mt-3 sm:mt-3">
-          <input
-            type="search"
-            className="rounded border-mintTwo w-80 h-9  md:w-60 sm:w-60"
-            placeholder="producto o sku"
-            onChange={(e) => setCurrentValue(e.target.value)}
-          />
-          <button className="bg-ligth text-dark border-mintTwo px-4 py-2 rounded hover:text-red">
-            Buscar
-          </button>
-        </div>
-      </div>
+      {<SearchInput />}
       <nav className="flex flex-row pt-3 items-center">
-        <div className="ml-auto">
-          <NavLink
-            to="/"
-            className="font-poppins text-lg md:text-base sm:text-base px-2 border-none text-red hover:text-dark hover:bg-transparent"
-          >
-            Cerrar sesión
-          </NavLink>
-        </div>
+        {<LogoutButton />}
       </nav>
     </header>
   );

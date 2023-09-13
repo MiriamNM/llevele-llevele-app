@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import LogoutButton from "../LogoutButton";
 import { Cascader } from "antd";
 import logo from "../../Assets/llevele-llevele.png";
 
@@ -23,14 +23,7 @@ const HeaderAdmin = ({ userData, setVendorSelect }) => {
         <div className="flex space-x-4">
           <Cascader options={options} onChange={onChange} />
         </div>
-        <div className="ml-auto">
-          <NavLink
-            to="/"
-            className="font-poppins text-lg md:text-base sm:text-base px-2 border-none text-red hover:text-dark hover:bg-transparent"
-          >
-            Cerrar sesión
-          </NavLink>
-        </div>
+        {<LogoutButton />}
       </nav>
     </header>
   );
