@@ -2,15 +2,25 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Modal } from "antd";
 
-const LoginModal = ({ handleCancel, visible, onOk, userData, email, setEmail, password, setPassword }) => {
+const LoginModal = ({
+  handleCancel,
+  visible,
+  onOk,
+  userData,
+  email,
+  setEmail,
+  password,
+  setPassword,
+}) => {
   const [error, setError] = useState("");
   const [destination, setDestination] = useState("");
 
   const emailExists = userData.some((user) => user.email === email);
+  const { role } = userData.find((user) => user.email === email) || 'vendor';
 
   useEffect(() => {
-    setDestination(emailExists ? "/vendor" : "/");
-  }, [emailExists]);
+    setDestination(emailExists ? `/${role}` : "/");
+  }, [emailExists, role]);
 
   const onCheckData = () => {
     if (emailExists) {

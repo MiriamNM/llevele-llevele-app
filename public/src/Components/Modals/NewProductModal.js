@@ -6,7 +6,7 @@ const NewProductModal = ({ handleCancel, visible, onOk, userData, email }) => {
   const { id: idUser } = userData.find(user => user.email === email);
   const [formData, setFormData] = useState({
     name: "",
-    image: "img",
+    image: "" || "img",
     description: "",
     price: 0,
     quality: 0,

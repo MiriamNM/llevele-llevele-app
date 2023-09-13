@@ -1,38 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Card } from "antd";
-import {
-  GetAllProducts,
-} from "../../Services/Products";
 
-const MainVendor = ({ email, userData }) => {
-  const [dataProduct, setDataProduct] = useState([]);
-
+const MainVendor = ({ email, userData, dataProduct }) => {
   const { Meta } = Card;
 
-  const { id: idUser } = userData.find((user) => user.email === email) || {};
-  const productUser = dataProduct.filter((user) => user.userId === idUser) || {};
-  const { id: idUserInProduct } = productUser.find((user) => idUser === user.userId) || {};
-
-  
-useEffect(() => {
-  GetAllProducts()
-    .then((result) => {
-      setDataProduct(result);
-    })
-    .catch((error) => {
-      throw error;
-    });
-}, []);
+  const { id } = userData.find((user) => user.email === email) || {};
+  const { userId } = dataProduct.find(({ userId }) => userId === id) || {};
 
   return (
     <main className="flex flex-col p-10">
-    {idUser !== idUserInProduct ? (
+      {id !== userId ? (
         <h2>No hay producto</h2>
       ) : (
         <>
           <h2 className="text-red font-medium text-5xl">Productos</h2>
           <div className="flex items-center justify-center flex-wrap md:pt-4 sm-pt-4">
-            {productUser.map((product) => {
+            {dataProduct.map((product) => {
               return (
                 <Card
                   key={product.id}

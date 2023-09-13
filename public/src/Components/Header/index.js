@@ -1,23 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import logo from "../../Assets/llevele-llevele.png";
 import RegisterModal from "../Modals/RegisterModal";
 import LoginModal from "../Modals/LoginModal";
-import { GetAllUsers } from "../../Services/Users";
 
-const Header = ({ email, setEmail, data, setData }) => {
+const Header = ({ email, setEmail, data }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modal, setModal] = useState(null);
   const [password, setPassword] = useState("");
 
-  useEffect(() => {
-    GetAllUsers()
-      .then((result) => {
-        setData(result);
-      })
-      .catch((error) => {
-        throw error;
-      });
-  }, []);
 
   const showModal = (component) => {
     setModal(component);
