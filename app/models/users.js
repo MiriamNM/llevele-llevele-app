@@ -11,6 +11,7 @@ const User = db.define("user", {
   role: {
     type: Sequelize.STRING,
     allowNull: false,
+    defaultValue: 'customer',
   },
   email: {
     type: Sequelize.STRING,

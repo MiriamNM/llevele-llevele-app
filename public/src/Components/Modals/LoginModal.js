@@ -16,7 +16,7 @@ const LoginModal = ({
   const [destination, setDestination] = useState("");
 
   const emailExists = userData.some((user) => user.email === email);
-  const { role } = userData.find((user) => user.email === email) || 'vendor';
+  const { role } = userData.find((user) => user.email === email) || 'customer';
 
   useEffect(() => {
     setDestination(emailExists ? `/${role}` : "/");

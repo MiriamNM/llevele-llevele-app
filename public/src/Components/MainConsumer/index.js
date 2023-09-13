@@ -2,21 +2,31 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Card } from "antd";
 
-const MainConsumer = ({ dataProduct, vendorSelect, userData }) => {
-  const [minPrice, setMinPrice] = useState();
-  const [maxPrice, setMaxPrice] = useState();
+const MainConsumer = ({
+  dataProduct,
+  vendorSelect,
+  userData,
+  currentValue,
+}) => {
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(0);
 
   const { Meta } = Card;
   const location = useLocation();
 
   const { id: idUser } =
-  userData.find(({ email }) => email === vendorSelect.toString()) || [];
+    userData.find(({ email }) => email === vendorSelect.toString()) || [];
+
   const userProducts =
     dataProduct.filter(({ userId }) => userId === idUser) || [];
+
   const filterUserProducts =
     userProducts.filter(
       ({ price }) => price >= minPrice && price <= maxPrice
     ) || [];
+
+  const filterWithSearch =
+    dataProduct.filter(({ name }) => name === currentValue) || [];
 
   return location.pathname === "/admin" ? (
     <main className="flex flex-col p-10">
@@ -107,27 +117,49 @@ const MainConsumer = ({ dataProduct, vendorSelect, userData }) => {
         />
       </div>
       <div className="flex items-center justify-center md:pt-8 sm:pt-8">
-        {dataProduct.map((product) => {
-          return (
-            <Card
-              key={product.id}
-              hoverable
-              style={{ width: 240 }}
-              // cover={
-              //   <img
-              //     alt="example"
-              //     src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-              //   />
-              // }
-              className="mb-4 mr-4"
-            >
-              <Meta
-                title={product.name}
-                description={`${product.description} - $${product.price}`}
-              />
-            </Card>
-          );
-        })}
+        {currentValue
+          ? filterWithSearch.map((product) => {
+              return (
+                <Card
+                  key={product.id}
+                  hoverable
+                  style={{ width: 240 }}
+                  // cover={
+                  //   <img
+                  //     alt="example"
+                  //     src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+                  //   />
+                  // }
+                  className="mb-4 mr-4"
+                >
+                  <Meta
+                    title={product.name}
+                    description={`${product.description} - $${product.price}`}
+                  />
+                </Card>
+              );
+            })
+          : dataProduct.map((product) => {
+              return (
+                <Card
+                  key={product.id}
+                  hoverable
+                  style={{ width: 240 }}
+                  // cover={
+                  //   <img
+                  //     alt="example"
+                  //     src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+                  //   />
+                  // }
+                  className="mb-4 mr-4"
+                >
+                  <Meta
+                    title={product.name}
+                    description={`${product.description} - $${product.price}`}
+                  />
+                </Card>
+              );
+            })}
       </div>
     </main>
   );
