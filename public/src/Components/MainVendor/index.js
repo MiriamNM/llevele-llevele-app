@@ -1,21 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Card } from "antd";
-import { GetAllProducts } from "../../Services/Products";
 
-const MainVendor = ({ email, userData }) => {
-  const [dataProduct, setDataProduct] = useState([]);
-
+const MainVendor = ({ email, userData, dataProduct }) => {
   const { Meta } = Card;
-
-  useEffect(() => {
-    GetAllProducts()
-      .then((result) => {
-        setDataProduct(result);
-      })
-      .catch((error) => {
-        throw error;
-      });
-  }, []);
 
   const { id } = userData.find((user) => user.email === email) || {};
   const { userId } = dataProduct.find(({ userId }) => userId === id) || {};

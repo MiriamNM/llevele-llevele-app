@@ -1,23 +1,18 @@
-import React from 'react';
+import React from "react";
 import { NavLink } from "react-router-dom";
-import { Cascader } from 'antd';
-import logo from '../../Assets/llevele-llevele.png';
+import { Cascader } from "antd";
+import logo from "../../Assets/llevele-llevele.png";
 
-const HeaderAdmin = () => {
-    const options = [
-        {
-            value: 'vendors',
-            label: 'vendors',
-        },
-        {
-            value: 'vendors',
-            label: 'vendors',
-        },
-    ];
+const HeaderAdmin = ({ userData, setVendorSelect }) => {
+  const VendorUsers = userData.filter(({role}) => role === 'vendor');
+  const options = Array.isArray(userData)
+    ? VendorUsers.map(({ email }) => ({ value: email, label: email }))
+    : [];
 
-    const onChange = (value) => {
-        console.log(value);
-      };
+
+  const onChange = (value) => {
+    setVendorSelect(value);
+  };
 
   return (
     <header className="container mx-auto p-8 bg-mint">
@@ -26,11 +21,11 @@ const HeaderAdmin = () => {
       </div>
       <nav className="flex flex-row pt-3 items-center">
         <div className="flex space-x-4">
-            <Cascader options={options} onChange={onChange} />
+          <Cascader options={options} onChange={onChange} />
         </div>
         <div className="ml-auto">
           <NavLink
-          to="/"
+            to="/"
             className="font-poppins text-lg md:text-base sm:text-base px-2 border-none text-red hover:text-dark hover:bg-transparent"
           >
             Cerrar sesión
