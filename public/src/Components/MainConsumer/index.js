@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Card } from "antd";
+import ProductCard from "../ProductCard";
+import ProductInputs from "../ProductInputs";
 
 const MainConsumer = ({
   dataProduct,
@@ -11,7 +12,6 @@ const MainConsumer = ({
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
 
-  const { Meta } = Card;
   const location = useLocation();
 
   const { id: idUser } =
@@ -31,134 +31,42 @@ const MainConsumer = ({
   return location.pathname === "/admin" ? (
     <main className="flex flex-col p-10">
       <h2 className="text-red font-medium text-5xl">Productos</h2>
-      <div className="flex flex-row py-2">
-        <label className="pr-2">Rango de precio:</label>
-        <input
-          type="number"
-          value={minPrice}
-          style={{ borderColor: "#49BEB7" }}
-          className="border rounded w-20 md:w-12 sm:w-12"
-          onChange={(e) => setMinPrice(e.target.value)}
+      {
+        <ProductInputs
+          minPrice={minPrice}
+          setMinPrice={setMinPrice}
+          maxPrice={maxPrice}
+          setMaxPrice={setMaxPrice}
         />
-        <p className="px-1">-</p>
-        <input
-          type="number"
-          value={maxPrice}
-          style={{ borderColor: "#49BEB7" }}
-          className="border rounded w-20 md:w-12  sm:w-12"
-          onChange={(e) => setMaxPrice(e.target.value)}
-        />
-      </div>
+      }
       <div className="flex items-center justify-center md:pt-8 sm:pt-8">
         {maxPrice && minPrice
           ? filterUserProducts.map((product) => {
-              return (
-                <Card
-                  key={product.id}
-                  hoverable
-                  style={{ width: 240 }}
-                  // cover={
-                  //   <img
-                  //     alt="example"
-                  //     src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-                  //   />
-                  // }
-                  className="mb-4 mr-4"
-                >
-                  <Meta
-                    title={product.name}
-                    description={`${product.description} - $${product.price}`}
-                  />
-                </Card>
-              );
+              return <ProductCard product={product} />;
             })
           : userProducts.map((product) => {
-              return (
-                <Card
-                  key={product.id}
-                  hoverable
-                  style={{ width: 240 }}
-                  // cover={
-                  //   <img
-                  //     alt="example"
-                  //     src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-                  //   />
-                  // }
-                  className="mb-4 mr-4"
-                >
-                  <Meta
-                    title={product.name}
-                    description={`${product.description} - $${product.price}`}
-                  />
-                </Card>
-              );
+              return <ProductCard product={product} />;
             })}
       </div>
     </main>
   ) : (
     <main className="flex flex-col p-10">
       <h2 className="text-red font-medium text-5xl">Productos</h2>
-      <div className="flex flex-row py-2">
-        <label className="pr-2">Rango de precio:</label>
-        <input
-          type="number"
-          value={minPrice}
-          style={{ borderColor: "#49BEB7" }}
-          className="border rounded w-20 md:w-12 sm:w-12"
-          onChange={(e) => setMinPrice(e.target.value)}
+      {
+        <ProductInputs
+          minPrice={minPrice}
+          setMinPrice={setMinPrice}
+          maxPrice={maxPrice}
+          setMaxPrice={setMaxPrice}
         />
-        <p className="px-1">-</p>
-        <input
-          type="number"
-          value={maxPrice}
-          style={{ borderColor: "#49BEB7" }}
-          className="border rounded w-20 md:w-12  sm:w-12"
-          onChange={(e) => setMaxPrice(e.target.value)}
-        />
-      </div>
+      }
       <div className="flex items-center justify-center md:pt-8 sm:pt-8">
         {currentValue
           ? filterWithSearch.map((product) => {
-              return (
-                <Card
-                  key={product.id}
-                  hoverable
-                  style={{ width: 240 }}
-                  // cover={
-                  //   <img
-                  //     alt="example"
-                  //     src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-                  //   />
-                  // }
-                  className="mb-4 mr-4"
-                >
-                  <Meta
-                    title={product.name}
-                    description={`${product.description} - $${product.price}`}
-                  />
-                </Card>
-              );
+              return <ProductCard product={product} />;
             })
           : dataProduct.map((product) => {
-              return (
-                <Card
-                  key={product.id}
-                  hoverable
-                  style={{ width: 240 }}
-                  // cover={
-                  //   <img
-                  //     alt="example"
-                  //     src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-                  //   />
-                  // }
-                  className="mb-4 mr-4"
-                >
-                  <Meta
-                    title={product.name}
-                    description={`${product.description} - $${product.price}`}
-                  />
-                </Card>
-              );
+              return <ProductCard product={product} />;
             })}
       </div>
     </main>
