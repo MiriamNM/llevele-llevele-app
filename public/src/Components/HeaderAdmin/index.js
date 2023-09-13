@@ -25,7 +25,7 @@ const HeaderAdmin = ({ userData, setVendorSelect }) => {
           <div className="flex space-x-4 md:py-2 sm:py-2">
           <button
             className="font-poppins text-lg md:text-base sm:text-base px-2 border-none hover:text-red hover:bg-transparent"
-            onClick={() => setVendorSelect()}
+            onClick={() => onChange()}
           >
             Productos
           </button>
