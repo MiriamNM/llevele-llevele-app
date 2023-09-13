@@ -3,7 +3,13 @@ import LogoutButton from "../LogoutButton";
 import NewProductModal from "../Modals/NewProductModal";
 import SearchInput from "../SearchInput";
 
-const HeaderVendor = ({ email, userData, dataProduct, setCurrentValue }) => {
+const HeaderVendor = ({
+  email,
+  userData,
+  dataProduct,
+  setCurrentValue,
+  setAuth,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modal, setModal] = useState(null);
 
@@ -32,7 +38,7 @@ const HeaderVendor = ({ email, userData, dataProduct, setCurrentValue }) => {
             Nuevo Producto
           </button>
         </div>
-        {<LogoutButton />}
+        {<LogoutButton setAuth={setAuth} />}
       </nav>
       {modal === "NewProduct" && isModalOpen && (
         <NewProductModal

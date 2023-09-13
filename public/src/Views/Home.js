@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route, NavLink } from "react-router-dom";
 import Header from "../Components/Header";
 import HeaderAdmin from "../Components/HeaderAdmin";
 import HeaderCustomer from "../Components/HeaderCustomer";
@@ -44,60 +44,74 @@ const Home = () => {
             path="/"
             element={
               <>
-                <Header email={email} setEmail={setEmail} data={userData} />
+                <Header
+                  email={email}
+                  setEmail={setEmail}
+                  data={userData}
+                  setAuth={setAuth}
+                />
                 <Main />
               </>
             }
           />
-          <Route
-            path="/vendor"
-            element={
-              <>
-                <HeaderVendor
-                  email={email}
-                  userData={userData}
-                  dataProduct={dataProduct}
-                  setCurrentValue={setCurrentValue}
-                />
-                <MainVendor
-                  email={email}
-                  userData={userData}
-                  dataProduct={dataProduct}
-                  currentValue={currentValue}
-                />
-              </>
-            }
-          />
-          <Route
-            path="/customer"
-            element={
-              <>
-                <HeaderCustomer setCurrentValue={setCurrentValue} />
-                <MainConsumer
-                  userData={userData}
-                  dataProduct={dataProduct}
-                  vendorSelect={vendorSelect}
-                  currentValue={currentValue}
-                />
-              </>
-            }
-          />
-          <Route
-            path="/admin"
-            element={
-              <>
-                <HeaderAdmin
-                  userData={userData}
-                  setVendorSelect={setVendorSelect}
-                />
-                <MainConsumer
-                  userData={userData}
-                  dataProduct={dataProduct}
-                  vendorSelect={vendorSelect}
-                />
-              </>
-            }
-          />
+          {auth && (
+            <>
+              <Route
+                path="/vendor"
+                element={
+                  <>
+                    <HeaderVendor
+                      email={email}
+                      userData={userData}
+                      dataProduct={dataProduct}
+                      setCurrentValue={setCurrentValue}
+                      setAuth={setAuth}
+                    />
+                    <MainVendor
+                      email={email}
+                      userData={userData}
+                      dataProduct={dataProduct}
+                      currentValue={currentValue}
+                    />
+                  </>
+                }
+              />
+              <Route
+                path="/customer"
+                element={
+                  <>
+                    <HeaderCustomer
+                      setCurrentValue={setCurrentValue}
+                      setAuth={setAuth}
+                    />
+                    <MainConsumer
+                      userData={userData}
+                      dataProduct={dataProduct}
+                      vendorSelect={vendorSelect}
+                      currentValue={currentValue}
+                    />
+                  </>
+                }
+              />
+              <Route
+                path="/admin"
+                element={
+                  <>
+                    <HeaderAdmin
+                      userData={userData}
+                      setVendorSelect={setVendorSelect}
+                      setAuth={setAuth}
+                    />
+                    <MainConsumer
+                      userData={userData}
+                      dataProduct={dataProduct}
+                      vendorSelect={vendorSelect}
+                    />
+                  </>
+                }
+              />
+            </>
+          )}
         </Routes>
       </HashRouter>
     </div>

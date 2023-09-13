@@ -3,7 +3,7 @@ import LogoutButton from "../LogoutButton";
 import { Cascader } from "antd";
 import logo from "../../Assets/llevele-llevele.png";
 
-const HeaderAdmin = ({ userData, setVendorSelect }) => {
+const HeaderAdmin = ({ userData, setVendorSelect, setAuth }) => {
   const VendorUsers = userData.filter(({role}) => role === 'vendor');
   const options = Array.isArray(userData)
     ? VendorUsers.map(({ email }) => ({ value: email, label: email }))
@@ -31,7 +31,7 @@ const HeaderAdmin = ({ userData, setVendorSelect }) => {
           </button>
         </div>
         </div>
-        {<LogoutButton />}
+        {<LogoutButton setAuth={setAuth} />}
       </nav>
     </header>
   );

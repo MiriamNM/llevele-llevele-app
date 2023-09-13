@@ -3,7 +3,7 @@ import logo from "../../Assets/llevele-llevele.png";
 import RegisterModal from "../Modals/RegisterModal";
 import LoginModal from "../Modals/LoginModal";
 
-const Header = ({ email, setEmail, data }) => {
+const Header = ({ email, setEmail, data, auth, setAuth }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modal, setModal] = useState(null);
   const [password, setPassword] = useState("");
@@ -63,6 +63,8 @@ const Header = ({ email, setEmail, data }) => {
             setEmail={setEmail}
             password={password}
             setPassword={setPassword}
+            auth={auth}
+            setAuth={setAuth}
           />
         )}
       </nav>
