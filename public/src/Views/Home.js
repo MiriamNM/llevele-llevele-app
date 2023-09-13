@@ -15,6 +15,7 @@ const Home = () => {
   const [userData, setUserData] = useState([]);
   const [dataProduct, setDataProduct] = useState([]);
   const [vendorSelect, setVendorSelect] = useState([]);
+  const [currentValue, setCurrentValue] = useState([]);
 
   useEffect(() => {
     GetAllUsers()
@@ -68,11 +69,12 @@ const Home = () => {
             path="/customer"
             element={
               <>
-                <HeaderCustomer />
+                <HeaderCustomer setCurrentValue={setCurrentValue} />
                 <MainConsumer
                   userData={userData}
                   dataProduct={dataProduct}
                   vendorSelect={vendorSelect}
+                  currentValue={currentValue}
                 />
               </>
             }

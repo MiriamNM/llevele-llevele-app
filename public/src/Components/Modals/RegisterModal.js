@@ -4,7 +4,7 @@ import { CreateNewUser } from "../../Services/Users";
 
 const RegisterModal = ({ handleCancel, visible, onOk }) => {
   const [formData, setFormData] = useState({
-    role: "" || "vendor",
+    role: "" || "customer",
     email: "",
     password: "",
   });
