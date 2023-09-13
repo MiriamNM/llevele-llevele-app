@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import ProductCard from "../ProductCard";
-import ProductInputs from "../ProductInputs";
+import ContainerCard from "../ContainerCard";
 
 const MainConsumer = ({
   dataProduct,
@@ -20,56 +19,37 @@ const MainConsumer = ({
   const userProducts =
     dataProduct.filter(({ userId }) => userId === idUser) || [];
 
-  const filterUserProducts =
-    userProducts.filter(
-      ({ price }) => price >= minPrice && price <= maxPrice
-    ) || [];
-
   const filterWithSearch =
     dataProduct.filter(({ name }) => name === currentValue) || [];
 
+  const filterUserProducts = (data) => {
+    const dataFilter =
+      data.filter(({ price }) => price >= minPrice && price <= maxPrice) || [];
+    return dataFilter;
+  };
+
   return location.pathname === "/admin" ? (
-    <main className="flex flex-col p-10">
-      <h2 className="text-red font-medium text-5xl">Productos</h2>
-      {
-        <ProductInputs
-          minPrice={minPrice}
-          setMinPrice={setMinPrice}
-          maxPrice={maxPrice}
-          setMaxPrice={setMaxPrice}
-        />
-      }
-      <div className="flex items-center justify-center md:pt-8 sm:pt-8">
-        {maxPrice && minPrice
-          ? filterUserProducts.map((product) => {
-              return <ProductCard product={product} />;
-            })
-          : userProducts.map((product) => {
-              return <ProductCard product={product} />;
-            })}
-      </div>
-    </main>
+    <ContainerCard
+      state={vendorSelect}
+      data={userProducts}
+      minPrice={minPrice}
+      setMinPrice={setMinPrice}
+      maxPrice={maxPrice}
+      setMaxPrice={setMaxPrice}
+      filterUserProducts={filterUserProducts}
+      dataProduct={dataProduct}
+    />
   ) : (
-    <main className="flex flex-col p-10">
-      <h2 className="text-red font-medium text-5xl">Productos</h2>
-      {
-        <ProductInputs
-          minPrice={minPrice}
-          setMinPrice={setMinPrice}
-          maxPrice={maxPrice}
-          setMaxPrice={setMaxPrice}
-        />
-      }
-      <div className="flex items-center justify-center md:pt-8 sm:pt-8">
-        {currentValue
-          ? filterWithSearch.map((product) => {
-              return <ProductCard product={product} />;
-            })
-          : dataProduct.map((product) => {
-              return <ProductCard product={product} />;
-            })}
-      </div>
-    </main>
+    <ContainerCard
+      state={currentValue}
+      data={filterWithSearch}
+      minPrice={minPrice}
+      setMinPrice={setMinPrice}
+      maxPrice={maxPrice}
+      setMaxPrice={setMaxPrice}
+      filterUserProducts={filterUserProducts}
+      dataProduct={dataProduct}
+    />
   );
 };
 

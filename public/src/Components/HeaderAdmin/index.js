@@ -3,7 +3,7 @@ import LogoutButton from "../LogoutButton";
 import { Cascader } from "antd";
 import logo from "../../Assets/llevele-llevele.png";
 
-const HeaderAdmin = ({ userData, setVendorSelect }) => {
+const HeaderAdmin = ({ userData, setVendorSelect, setAuth }) => {
   const VendorUsers = userData.filter(({role}) => role === 'vendor');
   const options = Array.isArray(userData)
     ? VendorUsers.map(({ email }) => ({ value: email, label: email }))
@@ -11,7 +11,7 @@ const HeaderAdmin = ({ userData, setVendorSelect }) => {
 
 
   const onChange = (value) => {
-    setVendorSelect(value);
+    setVendorSelect(value || []);
   };
 
   return (
@@ -22,8 +22,16 @@ const HeaderAdmin = ({ userData, setVendorSelect }) => {
       <nav className="flex flex-row pt-3 items-center">
         <div className="flex space-x-4">
           <Cascader options={options} onChange={onChange} />
+          <div className="flex space-x-4 md:py-2 sm:py-2">
+          <button
+            className="font-poppins text-lg md:text-base sm:text-base px-2 border-none hover:text-red hover:bg-transparent"
+            onClick={() => onChange()}
+          >
+            Productos
+          </button>
         </div>
-        {<LogoutButton />}
+        </div>
+        {<LogoutButton setAuth={setAuth} />}
       </nav>
     </header>
   );

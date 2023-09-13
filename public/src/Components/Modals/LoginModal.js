@@ -11,6 +11,7 @@ const LoginModal = ({
   setEmail,
   password,
   setPassword,
+  setAuth
 }) => {
   const [error, setError] = useState("");
   const [destination, setDestination] = useState("");
@@ -22,10 +23,12 @@ const LoginModal = ({
     setDestination(emailExists ? `/${role}` : "/");
   }, [emailExists, role]);
 
-  const onCheckData = () => {
+  const onCheckData = (value) => {
     if (emailExists) {
       onOk();
+      setAuth(value);
     } else {
+      setAuth(false);
       setError("Aún no estás registrado");
     }
   };
@@ -49,7 +52,7 @@ const LoginModal = ({
           to={destination}
           key="submit"
           className="font-poppins text-dark border-water border-5 font-normal text-base rounded px-4 py-2 mr-2 hover:bg-light hover:text-red hover:border-red"
-          onClick={() => onCheckData()}
+          onClick={() => onCheckData(true)}
         >
           Iniciar sesión
         </NavLink>,
