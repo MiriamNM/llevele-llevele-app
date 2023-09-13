@@ -16,6 +16,7 @@ const Home = () => {
   const [dataProduct, setDataProduct] = useState([]);
   const [vendorSelect, setVendorSelect] = useState([]);
   const [currentValue, setCurrentValue] = useState([]);
+  const [auth, setAuth] = useState(false);
 
   useEffect(() => {
     GetAllUsers()
@@ -56,11 +57,13 @@ const Home = () => {
                   email={email}
                   userData={userData}
                   dataProduct={dataProduct}
+                  setCurrentValue={setCurrentValue}
                 />
                 <MainVendor
                   email={email}
                   userData={userData}
                   dataProduct={dataProduct}
+                  currentValue={currentValue}
                 />
               </>
             }

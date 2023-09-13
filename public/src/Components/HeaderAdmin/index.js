@@ -11,7 +11,7 @@ const HeaderAdmin = ({ userData, setVendorSelect }) => {
 
 
   const onChange = (value) => {
-    setVendorSelect(value);
+    setVendorSelect(value || []);
   };
 
   return (
@@ -22,6 +22,14 @@ const HeaderAdmin = ({ userData, setVendorSelect }) => {
       <nav className="flex flex-row pt-3 items-center">
         <div className="flex space-x-4">
           <Cascader options={options} onChange={onChange} />
+          <div className="flex space-x-4 md:py-2 sm:py-2">
+          <button
+            className="font-poppins text-lg md:text-base sm:text-base px-2 border-none hover:text-red hover:bg-transparent"
+            onClick={() => setVendorSelect()}
+          >
+            Productos
+          </button>
+        </div>
         </div>
         {<LogoutButton />}
       </nav>

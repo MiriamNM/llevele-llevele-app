@@ -2,10 +2,10 @@ import React from "react";
 import LogoutButton from "../LogoutButton";
 import SearchInput from "../SearchInput";
 
-const HeaderCustomer = () => {
+const HeaderCustomer = ({ setCurrentValue }) => {
   return (
     <header className="container mx-auto p-8 bg-mint">
-      {<SearchInput />}
+      {<SearchInput setCurrentValue={setCurrentValue} />}
       <nav className="flex flex-row pt-3 items-center">
         {<LogoutButton />}
       </nav>

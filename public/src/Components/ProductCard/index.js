@@ -10,12 +10,6 @@ const ProductCard = ({ product }) => {
         key={product.id}
         hoverable
         style={{ width: 240 }}
-        // cover={
-        //   <img
-        //     alt="example"
-        //     src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-        //   />
-        // }
         className="mb-4 mr-4"
       >
         <Meta
