@@ -12,7 +12,7 @@ const ContainerCard = ({
   setMaxPrice,
   filterUserProducts,
   dataProduct,
-  onDeleteProduct,
+  onDeleteProduct
 }) => {
   const location = useLocation();
 

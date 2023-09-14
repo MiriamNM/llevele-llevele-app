@@ -7,7 +7,7 @@ const HeaderCustomer = ({ setCurrentValue, setAuth }) => {
     <header className="container mx-auto p-8 bg-mint">
       {<SearchInput setCurrentValue={setCurrentValue} />}
       <nav className="flex flex-row pt-3 items-center">
-        {<LogoutButton setAuth={setAuth} />}
+        <LogoutButton setAuth={setAuth} />
       </nav>
     </header>
   );

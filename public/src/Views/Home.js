@@ -17,6 +17,7 @@ const Home = () => {
   const [vendorSelect, setVendorSelect] = useState([]);
   const [currentValue, setCurrentValue] = useState([]);
   const [auth, setAuth] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     GetAllUsers()
@@ -38,9 +39,9 @@ const Home = () => {
 
   const onDeleteProduct = async (id) => {
     try {
-      await DeleteProduct(id);
+      id && (await DeleteProduct(id));
     } catch (error) {
-      console.log(error)
+      throw error;
     }
   };
 
@@ -55,10 +56,29 @@ const Home = () => {
                 <Header
                   email={email}
                   setEmail={setEmail}
-                  data={userData}
+                  userData={userData}
                   setAuth={setAuth}
+                  error={error}
+                  setError={setError}
                 />
                 <Main />
+              </>
+            }
+          />
+          <Route
+            path="/customer"
+            element={
+              <>
+                <HeaderCustomer
+                  setCurrentValue={setCurrentValue}
+                  setAuth={setAuth}
+                />
+                <MainConsumer
+                  userData={userData}
+                  dataProduct={dataProduct}
+                  vendorSelect={vendorSelect}
+                  currentValue={currentValue}
+                />
               </>
             }
           />
@@ -74,6 +94,8 @@ const Home = () => {
                       dataProduct={dataProduct}
                       setCurrentValue={setCurrentValue}
                       setAuth={setAuth}
+                      error={error}
+                      setError={setError}
                     />
                     <MainVendor
                       email={email}
@@ -81,23 +103,6 @@ const Home = () => {
                       dataProduct={dataProduct}
                       currentValue={currentValue}
                       onDeleteProduct={onDeleteProduct}
-                    />
-                  </>
-                }
-              />
-              <Route
-                path="/customer"
-                element={
-                  <>
-                    <HeaderCustomer
-                      setCurrentValue={setCurrentValue}
-                      setAuth={setAuth}
-                    />
-                    <MainConsumer
-                      userData={userData}
-                      dataProduct={dataProduct}
-                      vendorSelect={vendorSelect}
-                      currentValue={currentValue}
                     />
                   </>
                 }

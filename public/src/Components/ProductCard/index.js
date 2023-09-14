@@ -19,6 +19,7 @@ const ProductCard = ({ product, onDeleteProduct }) => {
           title={product.name}
           description={`${product.description} - $${product.price}`}
         />
+        <button className="flex pt-4 pl-16 text-water hover:text-red">Agregar a Carrito</button>
       </Card>
     );
   }

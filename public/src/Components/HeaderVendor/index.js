@@ -9,13 +9,21 @@ const HeaderVendor = ({
   dataProduct,
   setCurrentValue,
   setAuth,
+  error,
+  setError,
 }) => {
+
+  const resetData = () => {
+    setError("");
+  };
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modal, setModal] = useState(null);
 
   const showModal = (component) => {
     setModal(component);
     setIsModalOpen(true);
+    resetData();
   };
 
   const handleOk = () => {
@@ -43,11 +51,13 @@ const HeaderVendor = ({
       {modal === "NewProduct" && isModalOpen && (
         <NewProductModal
           handleCancel={handleCancel}
-          visible={isModalOpen}
+          open={isModalOpen}
           onOk={handleOk}
           productData={dataProduct}
           userData={userData}
           email={email}
+          error={error}
+          setError={setError}
         />
       )}
     </header>

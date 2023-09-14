@@ -6,7 +6,7 @@ const MainVendor = ({
   userData,
   dataProduct,
   currentValue,
-  onDeleteProduct,
+  onDeleteProduct
 }) => {
   const { id } = userData.find((user) => user.email === email) || {};
   const { userId } = dataProduct.find(({ userId }) => userId === id) || {};
