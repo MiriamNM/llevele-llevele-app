@@ -1,12 +1,46 @@
 import React from "react";
-import { Button, Drawer, Space, List, Skeleton } from "antd";
+import { Button, Drawer, Space, Table } from "antd";
+import { CloseCircleOutlined, PlusCircleOutlined } from "@ant-design/icons";
 
-const ModalCar = ({ placement, onClose, open }) => {
+const ModalCar = ({
+  onClose,
+  open,
+  addProduct,
+  onAddProduct,
+  onDeleteCartProduct,
+}) => {
+  const columns = [
+    {
+      dataIndex: "id",
+      id: "id",
+      render: (id) => <CloseCircleOutlined onClick={() => onDeleteCartProduct({ id })} />,
+    },
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "Price",
+      dataIndex: "price",
+      key: "price",
+    },
+    {
+      title: "Description",
+      dataIndex: "description",
+      key: "description",
+    },
+    {
+      dataIndex: "id",
+      id: "id",
+      render: (id) => <PlusCircleOutlined onClick={() => onAddProduct({ id })} />,
+    },
+  ];
+
   return (
     <>
       <Drawer
         title="Carrito de compras"
-        placement={placement}
         width={500}
         onClose={onClose}
         open={open}
@@ -17,21 +51,10 @@ const ModalCar = ({ placement, onClose, open }) => {
           </Space>
         }
       >
-        <List
-          className="demo-loadmore-list"
-          itemLayout="horizontal"
-          renderItem={(item) => (
-            <List.Item>
-              <Skeleton>
-                <List.Item.Meta title="hola" description="hola descripcion" />
-                <div>precio</div>
-              </Skeleton>
-            </List.Item>
-          )}
+        <Table
+          columns={columns}
+          dataSource={addProduct}
         />
-        {/* <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p> */}
       </Drawer>
     </>
   );

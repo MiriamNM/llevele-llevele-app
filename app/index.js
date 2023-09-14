@@ -23,6 +23,7 @@ app.use((req, res, next) => {
 app.use("/dev", require("./routes/dev"));
 app.use("/users", require("./routes/users"));
 app.use("/products", require("./routes/products"));
+app.use("/cart", require("./routes/cart"));
 
 (async () => {
   try {

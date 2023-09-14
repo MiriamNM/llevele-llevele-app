@@ -11,7 +11,7 @@ const Header = ({
   auth,
   setAuth,
   error,
-  setError,
+  setError
 }) => {
 
   const resetData = () => {

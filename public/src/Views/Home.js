@@ -18,6 +18,12 @@ const Home = () => {
   const [currentValue, setCurrentValue] = useState([]);
   const [auth, setAuth] = useState(false);
   const [error, setError] = useState("");
+  const [addProduct, setAddProduct] = useState({
+    name: "",
+    description: "",
+    quality: "",
+    price: "",
+  });
 
   useEffect(() => {
     GetAllUsers()
@@ -40,6 +46,26 @@ const Home = () => {
   const onDeleteProduct = async (id) => {
     try {
       id && (await DeleteProduct(id));
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const onAddProduct = async ( product ) => {
+    try {
+      setAddProduct([...addProduct, product]);
+      console.log(product, 'added');
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const onDeleteCartProduct = async ( product ) => {
+    try {
+      const filteredItems = addProduct.filter(({ id }) => id !== product.id);
+      setAddProduct(filteredItems);
+      console.log(product, 'deleted');
+      console.log(addProduct);
     } catch (error) {
       throw error;
     }
@@ -72,12 +98,20 @@ const Home = () => {
                 <HeaderCustomer
                   setCurrentValue={setCurrentValue}
                   setAuth={setAuth}
+                  dataProduct={dataProduct}
+                  addProduct={addProduct}
+                  setAddProduct={setAddProduct}
+                  onAddProduct={onAddProduct}
+                  onDeleteCartProduct={onDeleteCartProduct}
                 />
                 <MainConsumer
                   userData={userData}
                   dataProduct={dataProduct}
                   vendorSelect={vendorSelect}
                   currentValue={currentValue}
+                  addProduct={addProduct}
+                  setAddProduct={setAddProduct}
+                  onAddProduct={onAddProduct}
                 />
               </>
             }

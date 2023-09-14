@@ -46,7 +46,7 @@ const HeaderVendor = ({
             Nuevo Producto
           </button>
         </div>
-        {<LogoutButton setAuth={setAuth} />}
+        {<LogoutButton setAuth={setAuth} dataProduct={dataProduct} />}
       </nav>
       {modal === "NewProduct" && isModalOpen && (
         <NewProductModal
