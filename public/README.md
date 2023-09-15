@@ -45,8 +45,6 @@ Puedes ver todos los productos y tambien buscar por vendedor y filtrar los produ
 ## 4. Instalación:
 1. Haz las instalaciones de todo el stack tecnológico.
 2.  En otra diferente terminal del editor del backend o en una terminal en la carpeta principal de la aplicación pon:
-    - git init
-    - git clone https://github.com/MiriamNM/llevele-llevele-app.git
     - npm i
     - npm start (Este comando ponlo ya que este corriendo Docker)
 

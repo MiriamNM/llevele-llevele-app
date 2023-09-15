@@ -11,7 +11,8 @@ const Header = ({
   auth,
   setAuth,
   error,
-  setError
+  setError,
+  onClickCreateUser
 }) => {
 
   const resetData = () => {
@@ -77,6 +78,7 @@ const Header = ({
             userData={userData}
             error={error}
             setError={setError}
+            onClickCreateUser={onClickCreateUser}
           />
         )}
         {modal === "Login" && isModalOpen && (

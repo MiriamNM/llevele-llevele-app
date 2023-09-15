@@ -11,6 +11,7 @@ const HeaderVendor = ({
   setAuth,
   error,
   setError,
+  onClickCreateProduct,
 }) => {
 
   const resetData = () => {
@@ -58,6 +59,7 @@ const HeaderVendor = ({
           email={email}
           error={error}
           setError={setError}
+          onClickCreateProduct={onClickCreateProduct}
         />
       )}
     </header>
