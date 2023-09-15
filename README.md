@@ -18,7 +18,7 @@ Es una aplicación que ayuda a Administradores de negocios, vendedores o consumi
 ## 2. Documentación Técnica del Backend
 La aplicación esta compuesta por la arquitectura del backend desde las primeras carpetas y en la carpeta public se encuentra el frontend. 
 
-Todo el diseño del proyecto se realizo en [Diagrama](https://raw.githubusercontent.com/MiriamNM/llevele-llevele-app/main/public/src/Assets/diagrama.png). 
+Todo el diseño del proyecto se realizo en ![Diagrama](https://raw.githubusercontent.com/MiriamNM/llevele-llevele-app/main/public/src/Assets/diagrama.png). 
 
 ### Stack
 - Docker
@@ -59,7 +59,7 @@ Puedes ver todos los productos y tambien buscar por vendedor y filtrar los produ
     - npm i
     - docker-compose build 
     - docker-compose up 
-    ** O este comando: docker-compose up --build
+    - O este comando: docker-compose up --build
 
 ** NOTA: Necesitas tener corriendo pgAdmin 4 para que el Frontend funcione correctamente y puedas usar la DB. En el Readme de Public esta la instalacion del frontend.
 
