@@ -58,6 +58,7 @@ const Home = () => {
   const onDeleteProduct = async (id) => {
     try {
       id && (await DeleteProduct(id));
+      setDataProduct(dataProduct.filter((product) => product.id!== id));
     } catch (error) {
       throw error;
     }
