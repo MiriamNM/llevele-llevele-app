@@ -11,29 +11,44 @@ const ModalCar = ({
 }) => {
   const columns = [
     {
+      title: "Borra",
       dataIndex: "id",
       id: "id",
-      render: (id) => <CloseCircleOutlined onClick={() => onDeleteCartProduct({ id })} />,
+      render: (id) => (
+        <CloseCircleOutlined onClick={() => onDeleteCartProduct(id)} />
+      ),
     },
     {
-      title: "Name",
+      title: "Nombre",
       dataIndex: "name",
       key: "name",
     },
     {
-      title: "Price",
+      title: "Precio",
       dataIndex: "price",
       key: "price",
     },
     {
-      title: "Description",
+      title: "Descripción",
       dataIndex: "description",
       key: "description",
     },
     {
+      title: "Agrega",
       dataIndex: "id",
       id: "id",
-      render: (id) => <PlusCircleOutlined onClick={() => onAddProduct({ id })} />,
+      render: (id, record) => (
+        <PlusCircleOutlined
+          onClick={() =>
+            onAddProduct({
+              name: record.name,
+              price: record.price,
+              quality: record.quality,
+              description: record.description,
+            })
+          }
+        />
+      ),
     },
   ];
 
@@ -51,10 +66,7 @@ const ModalCar = ({
           </Space>
         }
       >
-        <Table
-          columns={columns}
-          dataSource={addProduct}
-        />
+        <Table columns={columns} dataSource={addProduct} />
       </Drawer>
     </>
   );

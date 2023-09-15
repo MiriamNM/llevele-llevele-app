@@ -6,9 +6,6 @@ import { CloseCircleOutlined } from "@ant-design/icons";
 const ProductCard = ({
   product,
   onDeleteProduct,
-  addProduct,
-  setAddProduct,
-  dataProduct,
   onAddProduct
 }) => {
   const { Meta } = Card;

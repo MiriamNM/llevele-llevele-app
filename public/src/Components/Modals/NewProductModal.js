@@ -24,7 +24,9 @@ const NewProductModal = ({
 
   const onClickCreateProduct = async () => {
     try {
+      console.log(formData, "added 2");
       await CreateNewProduct(formData);
+      console.log(formData, "added");
       onOk();
     } catch (error) {
       formData === ""
@@ -109,13 +111,13 @@ const NewProductModal = ({
             onChange={handleChange}
           />
           <label htmlFor="number" className="block text-dark text-lg font-base">
-            Cantidad:
+          Cantidad:
           </label>
           <input
             type="number"
             placeholder="Cantidad"
             className="border rounded w-full py-2 px-3"
-            name="quantity"
+            name="quality"
             value={formData.quality}
             onChange={handleChange}
           />

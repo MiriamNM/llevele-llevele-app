@@ -9,6 +9,7 @@ import MainVendor from "../Components/MainVendor";
 import Main from "../Components/Main";
 import { DeleteProduct, GetAllProducts } from "../Services/Products";
 import { GetAllUsers } from "../Services/Users";
+import { CreateNewProductInCart, DeleteProductInCart, GetAllProductsInCart } from "../Services/Cart";
 
 const Home = () => {
   const [email, setEmail] = useState("");
@@ -18,12 +19,7 @@ const Home = () => {
   const [currentValue, setCurrentValue] = useState([]);
   const [auth, setAuth] = useState(false);
   const [error, setError] = useState("");
-  const [addProduct, setAddProduct] = useState({
-    name: "",
-    description: "",
-    quality: "",
-    price: "",
-  });
+  const [addProduct, setAddProduct] = useState([]);
 
   useEffect(() => {
     GetAllUsers()
@@ -41,6 +37,14 @@ const Home = () => {
       .catch((error) => {
         throw error;
       });
+
+    GetAllProductsInCart()
+      .then((result) => {
+        setAddProduct(result);
+      })
+      .catch((error) => {
+        throw error;
+      });
   }, []);
 
   const onDeleteProduct = async (id) => {
@@ -51,21 +55,20 @@ const Home = () => {
     }
   };
 
-  const onAddProduct = async ( product ) => {
+  const onAddProduct = async (product) => {
     try {
-      setAddProduct([...addProduct, product]);
-      console.log(product, 'added');
+      const { name, price, quality, description } = product;
+      const newProduct = { name, price, quality, description };
+      setAddProduct([...addProduct, newProduct]);
+      await CreateNewProductInCart(newProduct);
     } catch (error) {
       throw error;
     }
   };
 
-  const onDeleteCartProduct = async ( product ) => {
+  const onDeleteCartProduct = async (idProduct) => {
     try {
-      const filteredItems = addProduct.filter(({ id }) => id !== product.id);
-      setAddProduct(filteredItems);
-      console.log(product, 'deleted');
-      console.log(addProduct);
+      idProduct && (await DeleteProductInCart(idProduct));
     } catch (error) {
       throw error;
     }
