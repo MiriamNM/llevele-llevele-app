@@ -19,7 +19,7 @@ const Home = () => {
   const [currentValue, setCurrentValue] = useState([]);
   const [auth, setAuth] = useState(false);
   const [error, setError] = useState("");
-  const [addProduct, setAddProduct] = useState([]);
+  const [addProduct, setAddProduct] = useState();
 
   useEffect(() => {
     GetAllUsers()
