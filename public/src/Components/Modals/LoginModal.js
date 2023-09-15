@@ -4,16 +4,17 @@ import { Modal } from "antd";
 
 const LoginModal = ({
   handleCancel,
-  visible,
+  open,
   onOk,
   userData,
   email,
   setEmail,
   password,
   setPassword,
-  setAuth
+  setAuth,
+  error,
+  setError
 }) => {
-  const [error, setError] = useState("");
   const [destination, setDestination] = useState("");
 
   const emailExists = userData.some((user) => user.email === email);
@@ -35,7 +36,7 @@ const LoginModal = ({
 
   return (
     <Modal
-      visible={visible}
+    open={open}
       onCancel={handleCancel}
       onOk={onOk}
       className="font-poppins text-dark text-xl font-base"

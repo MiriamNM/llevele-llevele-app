@@ -42,7 +42,7 @@ const Main = () => {
       {modal === 'Register' && isModalOpen && (
           <RegisterModal
             handleCancel={handleCancel}
-            visible={isModalOpen}
+            open={isModalOpen}
             onOk={handleOk}
           />
         )}

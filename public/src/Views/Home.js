@@ -9,6 +9,7 @@ import MainVendor from "../Components/MainVendor";
 import Main from "../Components/Main";
 import { DeleteProduct, GetAllProducts } from "../Services/Products";
 import { GetAllUsers } from "../Services/Users";
+import { CreateNewProductInCart, DeleteProductInCart, GetAllProductsInCart } from "../Services/Cart";
 
 const Home = () => {
   const [email, setEmail] = useState("");
@@ -17,6 +18,8 @@ const Home = () => {
   const [vendorSelect, setVendorSelect] = useState([]);
   const [currentValue, setCurrentValue] = useState([]);
   const [auth, setAuth] = useState(false);
+  const [error, setError] = useState("");
+  const [addProduct, setAddProduct] = useState([]);
 
   useEffect(() => {
     GetAllUsers()
@@ -34,13 +37,40 @@ const Home = () => {
       .catch((error) => {
         throw error;
       });
+
+    GetAllProductsInCart()
+      .then((result) => {
+        setAddProduct(result);
+      })
+      .catch((error) => {
+        throw error;
+      });
   }, []);
 
   const onDeleteProduct = async (id) => {
     try {
-      await DeleteProduct(id);
+      id && (await DeleteProduct(id));
     } catch (error) {
-      console.log(error)
+      throw error;
+    }
+  };
+
+  const onAddProduct = async (product) => {
+    try {
+      const { name, price, quality, description } = product;
+      const newProduct = { name, price, quality, description };
+      setAddProduct([...addProduct, newProduct]);
+      await CreateNewProductInCart(newProduct);
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const onDeleteCartProduct = async (idProduct) => {
+    try {
+      idProduct && (await DeleteProductInCart(idProduct));
+    } catch (error) {
+      throw error;
     }
   };
 
@@ -55,10 +85,37 @@ const Home = () => {
                 <Header
                   email={email}
                   setEmail={setEmail}
-                  data={userData}
+                  userData={userData}
                   setAuth={setAuth}
+                  error={error}
+                  setError={setError}
                 />
                 <Main />
+              </>
+            }
+          />
+          <Route
+            path="/customer"
+            element={
+              <>
+                <HeaderCustomer
+                  setCurrentValue={setCurrentValue}
+                  setAuth={setAuth}
+                  dataProduct={dataProduct}
+                  addProduct={addProduct}
+                  setAddProduct={setAddProduct}
+                  onAddProduct={onAddProduct}
+                  onDeleteCartProduct={onDeleteCartProduct}
+                />
+                <MainConsumer
+                  userData={userData}
+                  dataProduct={dataProduct}
+                  vendorSelect={vendorSelect}
+                  currentValue={currentValue}
+                  addProduct={addProduct}
+                  setAddProduct={setAddProduct}
+                  onAddProduct={onAddProduct}
+                />
               </>
             }
           />
@@ -74,6 +131,8 @@ const Home = () => {
                       dataProduct={dataProduct}
                       setCurrentValue={setCurrentValue}
                       setAuth={setAuth}
+                      error={error}
+                      setError={setError}
                     />
                     <MainVendor
                       email={email}
@@ -81,23 +140,6 @@ const Home = () => {
                       dataProduct={dataProduct}
                       currentValue={currentValue}
                       onDeleteProduct={onDeleteProduct}
-                    />
-                  </>
-                }
-              />
-              <Route
-                path="/customer"
-                element={
-                  <>
-                    <HeaderCustomer
-                      setCurrentValue={setCurrentValue}
-                      setAuth={setAuth}
-                    />
-                    <MainConsumer
-                      userData={userData}
-                      dataProduct={dataProduct}
-                      vendorSelect={vendorSelect}
-                      currentValue={currentValue}
                     />
                   </>
                 }

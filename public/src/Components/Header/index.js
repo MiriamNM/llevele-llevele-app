@@ -2,16 +2,31 @@ import React, { useState } from "react";
 import logo from "../../Assets/llevele-llevele.png";
 import RegisterModal from "../Modals/RegisterModal";
 import LoginModal from "../Modals/LoginModal";
+import { NavLink } from "react-router-dom";
 
-const Header = ({ email, setEmail, data, auth, setAuth }) => {
+const Header = ({
+  email,
+  setEmail,
+  userData,
+  auth,
+  setAuth,
+  error,
+  setError
+}) => {
+
+  const resetData = () => {
+    setError("");
+    setEmail("");
+  };
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modal, setModal] = useState(null);
   const [password, setPassword] = useState("");
 
-
   const showModal = (component) => {
     setModal(component);
     setIsModalOpen(true);
+    resetData();
   };
 
   const handleOk = () => {
@@ -29,6 +44,14 @@ const Header = ({ email, setEmail, data, auth, setAuth }) => {
       </div>
       <nav>
         <ul className="flex space-x-4  md:pt-4 sm:pt-4">
+        <li>
+            <NavLink
+              to="/customer"
+              className="font-poppins text-lg pr-4 md:text-base sm:text-base px-2 border-none hover:text-red hover:bg-transparent"
+            >
+              Comprar
+            </NavLink>
+          </li>
           <li>
             <button
               className="font-poppins text-lg pr-4 md:text-base sm:text-base px-2 border-none hover:text-red hover:bg-transparent"
@@ -49,22 +72,27 @@ const Header = ({ email, setEmail, data, auth, setAuth }) => {
         {modal === "Register" && isModalOpen && (
           <RegisterModal
             handleCancel={handleCancel}
-            visible={isModalOpen}
+            open={isModalOpen}
             onOk={handleOk}
+            userData={userData}
+            error={error}
+            setError={setError}
           />
         )}
         {modal === "Login" && isModalOpen && (
           <LoginModal
             handleCancel={handleCancel}
-            visible={isModalOpen}
+            open={isModalOpen}
             onOk={handleOk}
-            userData={data}
+            userData={userData}
             email={email}
             setEmail={setEmail}
             password={password}
             setPassword={setPassword}
             auth={auth}
             setAuth={setAuth}
+            error={error}
+            setError={setError}
           />
         )}
       </nav>

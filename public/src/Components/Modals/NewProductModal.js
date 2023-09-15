@@ -2,8 +2,16 @@ import React, { useState } from "react";
 import { Modal } from "antd";
 import { CreateNewProduct } from "../../Services/Products";
 
-const NewProductModal = ({ handleCancel, visible, onOk, userData, email }) => {
-  const { id: idUser } = userData.find(user => user.email === email);
+const NewProductModal = ({
+  handleCancel,
+  open,
+  onOk,
+  userData,
+  email,
+  error,
+  setError,
+}) => {
+  const { id: idUser } = userData.find((user) => user.email === email);
   const [formData, setFormData] = useState({
     name: "",
     image: "" || "img",
@@ -13,14 +21,17 @@ const NewProductModal = ({ handleCancel, visible, onOk, userData, email }) => {
     sku: 0,
     userId: idUser,
   });
-  const [error, setError] = useState("");
 
   const onClickCreateProduct = async () => {
     try {
+      console.log(formData, "added 2");
       await CreateNewProduct(formData);
+      console.log(formData, "added");
       onOk();
     } catch (error) {
-      setError("El producto ya existe, intenta de nuevo.");
+      formData === ""
+        ? setError("Hay un problema interno, intenta más tarde")
+        : setError("El producto ya existe, intenta de nuevo.");
     }
   };
 
@@ -39,7 +50,7 @@ const NewProductModal = ({ handleCancel, visible, onOk, userData, email }) => {
 
   return (
     <Modal
-      visible={visible}
+      open={open}
       onCancel={handleCancel}
       onOk={onOk}
       className="font-poppins text-dark text-xl font-ligth"
@@ -100,13 +111,13 @@ const NewProductModal = ({ handleCancel, visible, onOk, userData, email }) => {
             onChange={handleChange}
           />
           <label htmlFor="number" className="block text-dark text-lg font-base">
-            Cantidad:
+          Cantidad:
           </label>
           <input
             type="number"
             placeholder="Cantidad"
             className="border rounded w-full py-2 px-3"
-            name="quantity"
+            name="quality"
             value={formData.quality}
             onChange={handleChange}
           />

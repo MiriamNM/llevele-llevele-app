@@ -13,6 +13,9 @@ const ContainerCard = ({
   filterUserProducts,
   dataProduct,
   onDeleteProduct,
+  addProduct, 
+  setAddProduct,
+  onAddProduct
 }) => {
   const location = useLocation();
 
@@ -37,6 +40,10 @@ const ContainerCard = ({
                     <ProductCard
                       key={product.id}
                       product={product}
+                      addProduct={addProduct}
+                      setAddProduct={setAddProduct}
+                      dataProduct={dataProduct}
+                      onAddProduct={onAddProduct}
                     />
                   );
                 })
@@ -45,6 +52,10 @@ const ContainerCard = ({
                     <ProductCard
                       key={product.id}
                       product={product}
+                      addProduct={addProduct}
+                      setAddProduct={setAddProduct}
+                      dataProduct={dataProduct}
+                      onAddProduct={onAddProduct}
                     />
                   );
                 })
@@ -54,6 +65,10 @@ const ContainerCard = ({
                   <ProductCard
                     key={product.id}
                     product={product}
+                    addProduct={addProduct}
+                    setAddProduct={setAddProduct}
+                    dataProduct={dataProduct}
+                    onAddProduct={onAddProduct}
                   />
                 );
               })
@@ -62,6 +77,10 @@ const ContainerCard = ({
                   <ProductCard
                     key={product.id}
                     product={product}
+                    addProduct={addProduct}
+                    setAddProduct={setAddProduct}
+                    dataProduct={dataProduct}
+                    onAddProduct={onAddProduct}
                   />
                 );
               })}

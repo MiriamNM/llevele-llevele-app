@@ -3,7 +3,11 @@ import { useLocation } from "react-router-dom";
 import { Card } from "antd";
 import { CloseCircleOutlined } from "@ant-design/icons";
 
-const ProductCard = ({ product, onDeleteProduct }) => {
+const ProductCard = ({
+  product,
+  onDeleteProduct,
+  onAddProduct
+}) => {
   const { Meta } = Card;
   const location = useLocation();
 
@@ -19,6 +23,12 @@ const ProductCard = ({ product, onDeleteProduct }) => {
           title={product.name}
           description={`${product.description} - $${product.price}`}
         />
+        <button
+          className="flex pt-4 pl-16 text-water hover:text-red"
+          onClick={() => onAddProduct(product)}
+        >
+          Agregar a Carrito
+        </button>
       </Card>
     );
   }
