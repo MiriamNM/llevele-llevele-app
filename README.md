@@ -18,7 +18,7 @@ Es una aplicación que ayuda a Administradores de negocios, vendedores o consumi
 ## 2. Documentación Técnica del Backend
 La aplicación esta compuesta por la arquitectura del backend desde las primeras carpetas y en la carpeta public se encuentra el frontend. 
 
-Todo el diseño del proyecto se realizo en [Diagrama](https://raw.githubusercontent.com/MiriamNM/llevele-llevele-app/main/public/src/Assets/diagrama.png). 
+Todo el diseño del proyecto se realizo en ![Diagrama](https://raw.githubusercontent.com/MiriamNM/llevele-llevele-app/main/public/src/Assets/diagrama.png). 
 
 ### Stack
 - Docker
