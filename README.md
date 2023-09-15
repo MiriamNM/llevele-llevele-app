@@ -59,7 +59,7 @@ Puedes ver todos los productos y tambien buscar por vendedor y filtrar los produ
     - npm i
     - docker-compose build 
     - docker-compose up 
-    ** O este comando: docker-compose up --build
+    - O este comando: docker-compose up --build
 
 ** NOTA: Necesitas tener corriendo pgAdmin 4 para que el Frontend funcione correctamente y puedas usar la DB. En el Readme de Public esta la instalacion del frontend.
 
