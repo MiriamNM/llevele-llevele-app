@@ -7,9 +7,17 @@ import HeaderVendor from "../Components/HeaderVendor";
 import MainConsumer from "../Components/MainConsumer";
 import MainVendor from "../Components/MainVendor";
 import Main from "../Components/Main";
-import { DeleteProduct, GetAllProducts } from "../Services/Products";
-import { GetAllUsers } from "../Services/Users";
-import { CreateNewProductInCart, DeleteProductInCart, GetAllProductsInCart } from "../Services/Cart";
+import {
+  CreateNewProduct,
+  DeleteProduct,
+  GetAllProducts,
+} from "../Services/Products";
+import { CreateNewUser, GetAllUsers } from "../Services/Users";
+import {
+  CreateNewProductInCart,
+  DeleteProductInCart,
+  GetAllProductsInCart,
+} from "../Services/Cart";
 
 const Home = () => {
   const [email, setEmail] = useState("");
@@ -59,8 +67,8 @@ const Home = () => {
     try {
       const { name, price, quality, description } = product;
       const newProduct = { name, price, quality, description };
-      setAddProduct([...addProduct, newProduct]);
       await CreateNewProductInCart(newProduct);
+      setAddProduct([...addProduct, newProduct]);
     } catch (error) {
       throw error;
     }
@@ -69,8 +77,47 @@ const Home = () => {
   const onDeleteCartProduct = async (idProduct) => {
     try {
       idProduct && (await DeleteProductInCart(idProduct));
+      setAddProduct(addProduct.filter((product) => product.id !== idProduct));
     } catch (error) {
       throw error;
+    }
+  };
+
+  const onClickCreateUser = async (userInfo, onOk) => {
+    const emailExists = userData.some(({ email }) => email === userInfo.email);
+    try {
+      const { role, email, password } = userInfo;
+      const newUser = { role, email, password };
+      await CreateNewUser(newUser);
+      setUserData([...userData, newUser]);
+      onOk();
+    } catch (error) {
+      setError(
+        emailExists
+          ? "El usuario ya existe, intenta de nuevo."
+          : "Hay un error interno, vuelve a intentarlo más tarde."
+      );
+    }
+  };
+
+  const onClickCreateProduct = async (productInfo, onOk) => {
+    try {
+      const { name, image, price, description, quality, sku, userId } =
+        productInfo;
+      const newProduct = {
+        name,
+        image,
+        price,
+        description,
+        quality,
+        sku,
+        userId,
+      };
+      await CreateNewProduct(newProduct);
+      setDataProduct([...dataProduct, newProduct]);
+      onOk();
+    } catch (error) {
+      error && setError("Hay un problema interno, intenta más tarde");
     }
   };
 
@@ -89,6 +136,7 @@ const Home = () => {
                   setAuth={setAuth}
                   error={error}
                   setError={setError}
+                  onClickCreateUser={onClickCreateUser}
                 />
                 <Main />
               </>
@@ -133,6 +181,7 @@ const Home = () => {
                       setAuth={setAuth}
                       error={error}
                       setError={setError}
+                      onClickCreateProduct={onClickCreateProduct}
                     />
                     <MainVendor
                       email={email}

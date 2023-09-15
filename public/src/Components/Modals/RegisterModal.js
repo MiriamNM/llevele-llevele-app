@@ -1,33 +1,18 @@
 import React, { useState } from "react";
 import { Modal } from "antd";
-import { CreateNewUser } from "../../Services/Users";
 
 const RegisterModal = ({
   handleCancel,
   open,
   onOk,
-  userData,
   error,
-  setError
+  onClickCreateUser
 }) => {
   const [formData, setFormData] = useState({
     role: "" || "customer",
     email: "",
     password: "",
   });
-
-  const emailExists = userData.some(({ email }) => email === formData.email);
-
-  const onClickCreateUser = async () => {
-    try {
-      await CreateNewUser(formData);
-      onOk();
-    } catch (error) {
-      emailExists 
-      ? setError("El usuario ya existe, intenta de nuevo.")
-      : setError("Hay un error interno, vuelve a intentarlo más tarde.")
-    }
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,10 +21,9 @@ const RegisterModal = ({
       [name]: value,
     }));
   };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    onClickCreateUser();
   };
 
   return (
@@ -59,7 +43,7 @@ const RegisterModal = ({
         <button
           key="submit"
           className="font-poppins text-dark border-water border-5 font-normal text-base rounded px-4 py-2 mr-2 hover:bg-light hover:text-red hover:border-red"
-          onClick={onClickCreateUser}
+          onClick={() => onClickCreateUser(formData, onOk)}
         >
           Registrarse
         </button>,

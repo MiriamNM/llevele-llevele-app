@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Modal } from "antd";
-import { CreateNewProduct } from "../../Services/Products";
 
 const NewProductModal = ({
   handleCancel,
@@ -9,7 +8,7 @@ const NewProductModal = ({
   userData,
   email,
   error,
-  setError,
+  onClickCreateProduct
 }) => {
   const { id: idUser } = userData.find((user) => user.email === email);
   const [formData, setFormData] = useState({
@@ -22,19 +21,6 @@ const NewProductModal = ({
     userId: idUser,
   });
 
-  const onClickCreateProduct = async () => {
-    try {
-      console.log(formData, "added 2");
-      await CreateNewProduct(formData);
-      console.log(formData, "added");
-      onOk();
-    } catch (error) {
-      formData === ""
-        ? setError("Hay un problema interno, intenta más tarde")
-        : setError("El producto ya existe, intenta de nuevo.");
-    }
-  };
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -45,7 +31,6 @@ const NewProductModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onClickCreateProduct();
   };
 
   return (
@@ -65,7 +50,7 @@ const NewProductModal = ({
         <button
           key="submit"
           className="font-poppins text-dark border-water border-5 font-normal text-base rounded px-4 py-2 mr-2 hover:bg-light hover:text-red hover:border-red"
-          onClick={onClickCreateProduct}
+          onClick={() => onClickCreateProduct(formData, onOk)}
         >
           Guardar
         </button>,
